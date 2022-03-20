@@ -26,7 +26,7 @@ public class Team
         {
             var count = 0;
             var eloSum = 0;
-            foreach (var player in Players.Where(o => o.faceit_elo != null))
+            foreach (var player in Players.Where(o => o.faceit_elo != null).OrderByDescending(o => o.faceit_elo).Take(5))
             {
                 eloSum = eloSum + (int)player.faceit_elo;
                 count++;
@@ -86,9 +86,7 @@ private static async Task FillTeamDetailsFromAPIsAsync(Team team, ILogger log)
     log.LogInformation($"{team.name}:");
     foreach (var player in team.Players)
     {
-        /*
-        TODO get total played hours and last 2 week hours
-        var steamApiUrl = $"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_API_KEY}&steamids={player.id}";
+        /*var steamApiUrl = $"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_API_KEY}&steamids={player.id}";
         var response = await client.GetAsync(steamApiUrl);
         var responseString = await response.Content.ReadAsStringAsync();
         dynamic steamdata = JsonConvert.DeserializeObject<dynamic>(responseString);
