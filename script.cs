@@ -21,14 +21,15 @@ public class Team
         public string Group { get; set;}
         public int season_ending_rank { get; set;}
         public int AvgElo { get; set;}
+        public float? MedianElo { get; set;}
 
         public void CalculateAverageElo()
         {
             var count = 0;
             var eloSum = 0;
-            foreach (var player in Players.Where(o => o.faceit_elo != null).OrderByDescending(o => o.faceit_elo).Take(5))
+            foreach (var player in Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5))
             {
-                eloSum = eloSum + (int)player.faceit_elo;
+                eloSum = eloSum + player.faceit_elo.Value;
                 count++;
             }
             if (count > 0)
@@ -36,6 +37,21 @@ public class Team
                 this.AvgElo = eloSum/count;
             }
         }
+        public void CalculateMedianElo()
+        {
+            var players = Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5).ToArray();
+            var n = players.Length;
+            if (n % 2 == 0)
+            {
+                this.MedianElo = (players[(n / 2) - 1].faceit_elo + players[(n / 2)].faceit_elo) / 2.0F;
+            }
+            else
+            {
+                this.MedianElo = players[(n / 2)].faceit_elo;
+            }
+
+        }
+
 }
 public class Player
 {
@@ -67,7 +83,7 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
             foreach (var team in teams.Where(o => o.Group == groupname))
             {
                 await FillTeamDetailsFromAPIsAsync(team, log);
-                result.AppendLine($"{groupname}: season end rank: {team.season_ending_rank} - avg elo: {team.AvgElo} ({team.name})");
+                result.AppendLine($"{groupname}: season end rank: {team.season_ending_rank} - avg elo: {team.AvgElo}, median elo: {team.MedianElo} ({team.name})");
             }
         }
         return (ActionResult)new OkObjectResult(result.ToString());
@@ -107,7 +123,8 @@ private static async Task FillTeamDetailsFromAPIsAsync(Team team, ILogger log)
         log.LogInformation($"{player.faceit_name} {player.faceit_elo} - {player.id}");
     }
     team.CalculateAverageElo();
-    log.LogInformation($"AVG: {team.AvgElo}");
+    team.CalculateMedianElo();
+    log.LogInformation($"AVG: {team.AvgElo} MEDIAN: {team.MedianElo}");
     log.LogInformation("--------------");
 }
 
