@@ -1,7 +1,7 @@
 # kanaliiga-faceit-script
-Script for fetching Faceit elo with list of steam ids or faceit nicknames.
+Script for fetching Faceit elo with list of steam ids or faceit nicknames.  
 Currently deployable as Azure Function which can be called with Teams.json as request body.
 
 # Teams data
-Manually inputted to Teams.json
+Manually inputted to Teams.json  
 TODO, get from Toornament API? Kanaliiga stats API when?
