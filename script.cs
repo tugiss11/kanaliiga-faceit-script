@@ -43,6 +43,7 @@ public class Player
         public string steam_name { get; set;}
         public int? faceit_elo { get; set; }
         public int csgo_hours { get; set; }
+        public string faceit_name { get; set;}
         public int last_2_weeks_hours { get; set; }
 }
 
@@ -65,9 +66,8 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
         {
             foreach (var team in teams.Where(o => o.Group == groupname))
             {
-                await FillTeamDetailsFromAPIsAsync(team, result, log);
-                team.CalculateAverageElo();
-                result.AppendLine($"{groupname}: season end rank: {team.season_ending_rank} - avg elo: {team.AvgElo} - ({team.name})");
+                await FillTeamDetailsFromAPIsAsync(team, log);
+                result.AppendLine($"{groupname}: season end rank: {team.season_ending_rank} - avg elo: {team.AvgElo} ({team.name})");
             }
         }
         return (ActionResult)new OkObjectResult(result.ToString());
@@ -81,20 +81,36 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
      
 }
 
-private static async Task FillTeamDetailsFromAPIsAsync(Team team, StringBuilder result, ILogger log)
+private static async Task FillTeamDetailsFromAPIsAsync(Team team, ILogger log)
 {
+    log.LogInformation($"{team.name}:");
     foreach (var player in team.Players)
     {
-        //var steamApiUrl = $"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_API_KEY}&steamids={player.id}";
-        //var response = await client.GetAsync(steamApiUrl);
-        //var responseString = await response.Content.ReadAsStringAsync();
-        //dynamic steamdata = JsonConvert.DeserializeObject<dynamic>(responseString);
-        //player.steam_name = steamdata.response.players[0].personaname;
-        var faceitplayerResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players?game=csgo&game_player_id={player.id}");
-        var faceitplayerResponseString = await faceitplayerResponse.Content.ReadAsStringAsync();
-        dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString); 
-        player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
+        /*
+        TODO get total played hours and last 2 week hours
+        var steamApiUrl = $"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_API_KEY}&steamids={player.id}";
+        var response = await client.GetAsync(steamApiUrl);
+        var responseString = await response.Content.ReadAsStringAsync();
+        dynamic steamdata = JsonConvert.DeserializeObject<dynamic>(responseString);
+        player.steam_name = steamdata.response.players[0].personaname; */
+        if (String.IsNullOrEmpty(player.faceit_name)) 
+        {
+            var faceitplayerResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players?game=csgo&game_player_id={player.id}");
+            var faceitplayerResponseString = await faceitplayerResponse.Content.ReadAsStringAsync();
+            dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString); 
+            player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
+            player.faceit_name = faceitplayerResponseData.games.csgo.game_player_name;
+        } else { //For some reason using SteamID gives wrong results for some players
+            var faceitplayerResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players?game=csgo&nickname={player.faceit_name}");
+            var faceitplayerResponseString = await faceitplayerResponse.Content.ReadAsStringAsync();
+            dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString); 
+            player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
+        }
+        log.LogInformation($"{player.faceit_name} {player.faceit_elo} - {player.id}");
     }
+    team.CalculateAverageElo();
+    log.LogInformation($"AVG: {team.AvgElo}");
+    log.LogInformation("--------------");
 }
 
 
