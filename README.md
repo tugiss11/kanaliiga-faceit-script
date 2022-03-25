@@ -5,3 +5,12 @@ Currently deployable as Azure Function which can be called with Teams.json as re
 # Teams data
 Manually inputted to Teams.json by running javascript in Toornament website  
 TODO, get from Toornament API? Kanaliiga stats API when?
+
+# Debugging
+```
+func host start
+```
+
+```
+bash test.sh
+```
