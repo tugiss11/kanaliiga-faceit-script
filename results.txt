@@ -1,0 +1,48 @@
+Group name	Rank	AvgElo	Median	Team profile	Name
+Masters A	1    	2260   	2246     	Balanced  	Certego
+Masters A	2    	2802   	2749     	Balanced  	CGI
+Masters A	3    	2154   	1971     	1v5       	Neste
+Masters A	4    	1997   	2235     	4v5       	Kela
+Masters A	5    	1621   	1922     	4v5       	SAKA
+Masters A	6    	1783   	1827     	Balanced  	Wolt
+Masters A	7    	1744   	1663     	Balanced  	Netlight
+Masters A	8    	1738   	1810     	Balanced  	Securitas
+
+Masters B	1    	2237   	2389     	4v5       	Eltel Tuulivoima
+Masters B	2    	2053   	2203     	Balanced  	VILPE FLOW
+Masters B	3    	2107   	1952     	1v5       	Fastems
+Masters B	4    	1940   	2041     	Balanced  	Mehiläinen Bee Rush
+Masters B	5    	1767   	1422     	1v5       	Niemi Esports A
+Masters B	6    	1905   	1737     	1v5       	Elisa Hosujat
+Masters B	7    	1940   	1564     	1v5       	Futurice
+Masters B	8    	1711   	1654     	Balanced  	Microsoft E-Sports Club
+
+Group name	Rank	AvgElo	Median	Team profile	Name
+Chllngr A	1   	1353  	1289  	Balanced  	Kuntarahoitus
+Chllngr A	2   	1787  	1625  	1v5       	INSTA eSports
+Chllngr A	3   	1635  	1542  	Balanced  	Solteq
+Chllngr A	4   	1476  	1367  	Balanced  	Talenom Yrittämisen iloa
+Chllngr A	5   	1345  	1412  	Balanced  	Hurja.cs
+Chllngr A	6   	1432  	1444  	Balanced  	VILPE C-SARJA
+ 
+Chllngr B	1   	1968  	1727  	1v5       	JIS-Automation
+Chllngr B	2   	1561  	1393  	1v5       	MFI
+Chllngr B	3   	1729  	1921  	4v5       	Abloy
+Chllngr B	4   	1606  	1486  	Balanced  	LCP
+Chllngr B	5   	1538  	1625  	Balanced  	Etteplan RED
+Chllngr B	6   	1617  	1563  	Balanced  	Nordcloud eSports
+ 
+Chllngr C	1   	1581  	1352  	1v5       	OP Ketterä®
+Chllngr C	2   	1609  	1719  	Balanced  	CGI e-urheilukerho
+Chllngr C	3   	1500  	1576  	Balanced  	Sajucon Oy
+Chllngr C	4   	1458  	1222  	1v5       	Cm Pirkkala
+Chllngr C	5   	1528  	1657  	Balanced  	Veikkaus Esports 1
+Chllngr C	6   	1418  	1315  	Balanced  	VEHO
+ 
+Chllngr D	1   	1756  	1564  	1v5       	OEM esports
+Chllngr D	2   	1596  	1513  	Balanced  	Nondest
+Chllngr D	3   	1421  	1379  	Balanced  	Telia Finland
+Chllngr D	4   	1937  	1831  	Balanced  	Jubic
+Chllngr D	5   	1562  	1629  	Balanced  	Digia Vengers
+Chllngr D	6   	1437  	1467  	Balanced  	Energia valtti CSGO
+ 
