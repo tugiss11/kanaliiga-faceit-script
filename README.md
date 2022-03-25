@@ -7,10 +7,12 @@ Manually inputted to Teams.json by running javascript in Toornament website
 TODO, get from Toornament API? Kanaliiga stats API when?
 
 # Debugging
+
+Start function app
 ```
 func host start
 ```
-
+Send POST request
 ```
 bash test.sh
 ```
