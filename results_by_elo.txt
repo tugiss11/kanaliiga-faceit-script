@@ -1,0 +1,41 @@
+AvgElo	Group name	Name
+2789  	Masters A	CGI
+2260  	Masters A	Certego
+2237  	Masters B	Eltel Tuulivoima
+2151  	Masters A	Neste
+2123  	Masters B	Fastems
+2052  	Masters B	VILPE FLOW
+1997  	Masters A	Kela
+1968  	Chllngr B	JIS-Automation
+1940  	Masters B	Mehiläinen Bee Rush
+1940  	Masters B	Futurice
+1937  	Chllngr D	Jubic
+1910  	Masters B	Elisa Hosujat
+1772  	Masters A	Wolt
+1770  	Chllngr A	INSTA eSports
+1767  	Masters B	Niemi Esports A
+1756  	Chllngr D	OEM esports
+1744  	Masters A	Netlight
+1738  	Masters A	Securitas
+1729  	Chllngr B	Abloy
+1711  	Masters B	Microsoft E-Sports Club
+1635  	Chllngr A	Solteq
+1622  	Chllngr B	Nordcloud eSports
+1621  	Masters A	SAKA
+1617  	Chllngr D	Nondest
+1606  	Chllngr B	LCP
+1604  	Chllngr C	CGI e-urheilukerho
+1576  	Chllngr C	OP Ketterä®
+1576  	Chllngr D	Digia Vengers
+1561  	Chllngr B	MFI
+1538  	Chllngr B	Etteplan RED
+1528  	Chllngr C	Veikkaus Esports 1
+1510  	Chllngr C	Sajucon Oy
+1476  	Chllngr A	Talenom Yrittämisen iloa
+1455  	Chllngr C	Cm Pirkkala
+1437  	Chllngr D	Energia valtti CSGO
+1432  	Chllngr A	VILPE C-SARJA
+1431  	Chllngr D	Telia Finland
+1418  	Chllngr C	VEHO
+1353  	Chllngr A	Kuntarahoitus
+1345  	Chllngr A	Hurja.cs

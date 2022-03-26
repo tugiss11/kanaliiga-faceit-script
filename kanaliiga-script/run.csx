@@ -93,24 +93,22 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
 {
     try
     {
+        var format = req.Query["format"];
         faceit_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", FACEIT_API_KEY);
-        var result = new StringBuilder();
-        var fields = new List<string> { "Group name", "Rank", "AvgElo", "Median", "Team profile", "Name" };
-        var delimiter = "\t";
-        result.AppendLine(string.Join(delimiter, fields));
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         var teams = JsonConvert.DeserializeObject<List<Team>>(requestBody);
-        teams = teams.OrderBy(o => o.season_ending_rank).ToList();
-        var groups = teams.OrderBy(o => o.Group).Select(o => o.Group).Distinct().ToList();
-        foreach (var groupname in groups)
+        foreach (var team in teams)
         {
-            foreach (var team in teams.Where(o => o.Group == groupname))
-            {
-                await FillTeamDetailsFromAPIsAsync(team, log);
-                var values = new List<string> { groupname, team.season_ending_rank.ToString().PadRight(4), team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6), team.Profile.PadRight(10), team.name };
-                result.AppendLine(string.Join(delimiter, values));
-            }
-            result.AppendLine(" ");
+            await FillTeamDetailsFromAPIsAsync(team, log);
+        }
+        StringBuilder result;
+        if (format == "elo")
+        {
+            result = PrintTeamsByElo(teams);
+        }
+        else
+        {
+            result = PrintTeamsByGroups(teams);
         }
         return (ActionResult)new OkObjectResult(result.ToString());
     }
@@ -121,6 +119,43 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
         return (ActionResult)new OkObjectResult("Taking a break.");
     }
 
+}
+
+private static StringBuilder PrintTeamsByElo(List<Team> teams)
+{
+    var result = new StringBuilder();
+    var fields = new List<string> { "AvgElo", "Group name", "Name" };
+    var delimiter = "\t";
+    result.AppendLine(string.Join(delimiter, fields));
+    teams = teams.OrderByDescending(o => o.AvgElo).ToList();
+    foreach (var team in teams)
+    {
+        var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.Group, team.name, };
+        result.AppendLine(string.Join(delimiter, values));
+    }
+    return result;
+}
+
+private static StringBuilder PrintTeamsByGroups(List<Team> teams)
+{
+    var result = new StringBuilder();
+    var fields = new List<string> { "Group name", "Rank", "AvgElo", "Median", "Profile", "Name" };
+    var delimiter = "\t";
+    result.AppendLine(string.Join(delimiter, fields));
+    teams = teams.OrderBy(o => o.season_ending_rank).ToList();
+
+    var groups = teams.OrderBy(o => o.Group).Select(o => o.Group).Distinct().ToList();
+    foreach (var groupname in groups)
+    {
+        foreach (var team in teams.Where(o => o.Group == groupname))
+        {
+
+            var values = new List<string> { groupname, team.season_ending_rank.ToString().PadRight(4), team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6), team.Profile.PadRight(7), team.name };
+            result.AppendLine(string.Join(delimiter, values));
+        }
+        result.AppendLine(" ");
+    }
+    return result;
 }
 
 private static async Task FillTeamDetailsFromAPIsAsync(Team team, ILogger log)
