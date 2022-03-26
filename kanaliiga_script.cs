@@ -25,75 +25,6 @@ namespace kanaliiga_script
         private static readonly HttpClient client = new HttpClient();
 
 
-        public class Team
-        {
-            public string name { get; set; }
-            public List<Player> Players { get; set; }
-            public string Group { get; set; }
-            public int season_ending_rank { get; set; }
-
-            public int AvgElo
-            {
-                get
-                {
-                    var count = 0;
-                    var eloSum = 0;
-                    foreach (var player in Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5))
-                    {
-                        eloSum = eloSum + player.faceit_elo.Value;
-                        count++;
-                    }
-                    if (count > 0)
-                    {
-                        return eloSum / count;
-                    }
-                    return 0;
-                }
-            }
-            public float? MedianElo
-            {
-                get
-                {
-                    var players = Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5).ToArray();
-                    var n = players.Length;
-                    if (n % 2 == 0)
-                    {
-                        return (players[(n / 2) - 1].faceit_elo + players[(n / 2)].faceit_elo) / 2.0F;
-                    }
-                    else
-                    {
-                        return players[(n / 2)].faceit_elo;
-                    }
-
-                }
-            }
-
-            public string Profile
-            {
-                get
-                {
-                    if (AvgElo > MedianElo + 150)
-                    {
-                        return "1v5";
-                    }
-                    if (MedianElo > AvgElo + 150)
-                    {
-                        return "4v5";
-                    }
-                    return "Balanced";
-                }
-
-            }
-        }
-        public class Player
-        {
-            public string id { get; set; }
-            public string steam_name { get; set; }
-            public int? faceit_elo { get; set; }
-            public int csgo_hours { get; set; }
-            public string faceit_name { get; set; }
-            public int last_2_weeks_hours { get; set; }
-        }
 
         private static string FACEIT_API_KEY = Environment.GetEnvironmentVariable("FACEIT_API_KEY");
         private static string AZURE_STORAGE_CONNECTION_STRING = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
@@ -189,7 +120,7 @@ namespace kanaliiga_script
         private static StringBuilder PrintTeamsByGroups(List<Team> teams)
         {
             var result = new StringBuilder();
-            var fields = new List<string> { "Group name", "Rank", "AvgElo", "Median", "Profile", "Name" };
+            var fields = new List<string> { "Group name", "Rank", "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "Profile".PadRight(8), "Name" };
             var delimiter = "\t";
             result.AppendLine(string.Join(delimiter, fields));
             teams = teams.OrderBy(o => o.season_ending_rank).ToList();
@@ -200,7 +131,8 @@ namespace kanaliiga_script
                 foreach (var team in teams.Where(o => o.Group == groupname))
                 {
 
-                    var values = new List<string> { groupname, team.season_ending_rank.ToString().PadRight(4), team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6), team.Profile.PadRight(7), team.name };
+                    var values = new List<string> { groupname, team.season_ending_rank.ToString().PadRight(4), team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6),
+                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.Profile.PadRight(8), team.name };
                     result.AppendLine(string.Join(delimiter, values));
                 }
                 result.AppendLine(" ");
@@ -211,14 +143,24 @@ namespace kanaliiga_script
         private static async Task FillTeamDetailsFromAPIsAsync(Team team, ILogger log)
         {
             log.LogInformation($"{team.name}:");
-            log.LogInformation($"APIKEY: {FACEIT_API_KEY}:");
             foreach (var player in team.Players)
             {
-                /*var steamApiUrl = $"http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={STEAM_API_KEY}&steamids={player.id}";
+                var steamApiUrl = $"https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key={STEAM_API_KEY}&steamid={player.id}";
                 var response = await client.GetAsync(steamApiUrl);
                 var responseString = await response.Content.ReadAsStringAsync();
-                dynamic steamdata = JsonConvert.DeserializeObject<dynamic>(responseString);
-                player.steam_name = steamdata.response.players[0].personaname; */
+                RecentlyPlayedGames steamdata = JsonConvert.DeserializeObject<RecentlyPlayedGames>(responseString);
+                Game gamedata = steamdata?.response?.games?.FirstOrDefault(o => o.appid == 730);
+                if (gamedata != null)
+                {
+                    player.playtime_2weeks = gamedata.playtime_2weeks;
+                    player.playtime_forever = gamedata.playtime_forever;
+                }
+                else
+                {
+                    player.is_public = false;
+                }
+
+
                 if (String.IsNullOrEmpty(player.faceit_name))
                 {
                     var faceitplayerResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players?game=csgo&game_player_id={player.id}");
@@ -242,11 +184,161 @@ namespace kanaliiga_script
                     dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString);
                     player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
                 }
-                log.LogInformation($"{player.faceit_name} {player.faceit_elo} - {player.id}");
+                log.LogInformation($"{player.faceit_name} {player.faceit_elo} - {player.id} {player.playtime_2weeks}");
             }
 
             log.LogInformation($"AVG: {team.AvgElo} MEDIAN: {team.MedianElo}");
             log.LogInformation("--------------");
         }
     }
+
+
+    public class Game
+    {
+        public int appid { get; set; }
+        public string name { get; set; }
+        public int playtime_2weeks { get; set; }
+        public int playtime_forever { get; set; }
+        public string img_icon_url { get; set; }
+        public int playtime_windows_forever { get; set; }
+        public int playtime_mac_forever { get; set; }
+        public int playtime_linux_forever { get; set; }
+    }
+
+    public class RecentlyPlayedGamesResponse
+    {
+        public int total_count { get; set; }
+        public List<Game> games { get; set; }
+    }
+
+    public class RecentlyPlayedGames
+    {
+        public RecentlyPlayedGamesResponse response { get; set; }
+    }
+
+
+    public class Team
+    {
+        public string name { get; set; }
+        public List<Player> Players { get; set; }
+        public string Group { get; set; }
+        public int season_ending_rank { get; set; }
+
+        public int AvgElo
+        {
+            get
+            {
+                var count = 0;
+                var eloSum = 0;
+                foreach (var player in Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5))
+                {
+                    eloSum = eloSum + player.faceit_elo.Value;
+                    count++;
+                }
+                if (count > 0)
+                {
+                    return eloSum / count;
+                }
+                return 0;
+            }
+        }
+
+        public int AvgTotalHours
+        {
+            get
+            {
+                var count = 0;
+                var hoursSum = 0;
+                foreach (var player in Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5))
+                {
+                    if (player.is_public)
+                    {
+                        hoursSum = hoursSum + player.playtime_forever;
+                        count++;
+                    }
+
+                }
+                if (count > 0)
+                {
+                    return hoursSum / 60 / count;
+                }
+                return 0;
+            }
+        }
+
+
+        public int AvgLast2Week
+        {
+            get
+            {
+                var count = 0;
+                var hoursSum = 0;
+                foreach (var player in Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5))
+                {
+                    if (player.is_public)
+                    {
+                        hoursSum = hoursSum + player.playtime_2weeks;
+                        count++;
+                    }
+
+                }
+                if (count > 0)
+                {
+                    return hoursSum / 60 / count;
+                }
+                return 0;
+            }
+        }
+
+
+
+        public float? MedianElo
+        {
+            get
+            {
+                var players = Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5).ToArray();
+                var n = players.Length;
+                if (n % 2 == 0)
+                {
+                    return (players[(n / 2) - 1].faceit_elo + players[(n / 2)].faceit_elo) / 2.0F;
+                }
+                else
+                {
+                    return players[(n / 2)].faceit_elo;
+                }
+
+            }
+        }
+
+        public int PrivateCount => Players.Count(o => !o.is_public);
+
+        public string Profile
+        {
+            get
+            {
+                if (AvgElo > MedianElo + 150)
+                {
+                    return "1v5";
+                }
+                if (MedianElo > AvgElo + 150)
+                {
+                    return "4v5";
+                }
+                return "Balanced";
+            }
+
+        }
+    }
+    public class Player
+    {
+        public string id { get; set; }
+        public string steam_name { get; set; }
+        public int? faceit_elo { get; set; }
+        public int playtime_2weeks { get; set; }
+        public string faceit_name { get; set; }
+        public int playtime_forever { get; set; }
+        public bool is_public { get; set; } = true;
+    }
+
+
 }
