@@ -105,14 +105,15 @@ namespace kanaliiga_script
         private static StringBuilder PrintTeamsByElo(List<Team> teams)
         {
             var result = new StringBuilder();
-            var fields = new List<string> { "AvgElo", "Group name", "Name" };
+            var fields = new List<string> { "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "Profile".PadRight(8), "Name" };
             var delimiter = "\t";
             result.AppendLine(string.Join(delimiter, fields));
-            teams = teams.OrderByDescending(o => o.AvgElo).ToList();
+            teams = teams.OrderByDescending(o => o.AvgElo).ThenByDescending(n => n.AvgTotalHours).ToList();
             foreach (var team in teams)
             {
-                var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.Group, team.name, };
-                result.AppendLine(string.Join(delimiter, values));
+                 var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6),
+                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.Profile.PadRight(8), team.name };
+                    result.AppendLine(string.Join(delimiter, values));
             }
             return result;
         }
@@ -142,7 +143,7 @@ namespace kanaliiga_script
 
         private static async Task FillTeamDetailsFromAPIsAsync(Team team, ILogger log)
         {
-            log.LogInformation($"{team.name}:");
+            log.LogInformation($"Team name: {team.name}");
             foreach (var player in team.Players)
             {
                 var steamApiUrl = $"https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key={STEAM_API_KEY}&steamid={player.id}";
@@ -221,8 +222,8 @@ namespace kanaliiga_script
     {
         public string name { get; set; }
         public List<Player> Players { get; set; }
-        public string Group { get; set; }
-        public int season_ending_rank { get; set; }
+        public string Group { get; set; } = "";
+        public int season_ending_rank { get; set; } = 0;
 
         public int AvgElo
         {
