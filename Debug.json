@@ -1,6 +1,7 @@
 [
     {
         "name": "Netlight",
+        "company_name": "Netlight",
         "group": "Masters A",
         "season_ending_rank": 7,
         "players": [
@@ -44,6 +45,7 @@
         ],
         "group": "Masters B",
         "season_ending_rank": 3,
-        "name": "Fastems"
+        "name": "Fastems",
+        "company_name": "Fastems"
     }
 ]

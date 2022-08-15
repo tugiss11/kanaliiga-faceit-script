@@ -105,14 +105,14 @@ namespace kanaliiga_script
         private static StringBuilder PrintTeamsByElo(List<Team> teams)
         {
             var result = new StringBuilder();
-            var fields = new List<string> { "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "Profile".PadRight(8), "Name" };
+            var fields = new List<string> { "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "HasFaceit".PadRight(8), "Name" };
             var delimiter = "\t";
             result.AppendLine(string.Join(delimiter, fields));
             teams = teams.OrderByDescending(o => o.AvgElo).ThenByDescending(n => n.AvgTotalHours).ToList();
             foreach (var team in teams)
             {
                  var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6),
-                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.Profile.PadRight(8), team.name };
+                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitElo.PadRight(8), $"{team.name} ({team.company_name})" };
                     result.AppendLine(string.Join(delimiter, values));
             }
             return result;
@@ -121,7 +121,7 @@ namespace kanaliiga_script
         private static StringBuilder PrintTeamsByGroups(List<Team> teams)
         {
             var result = new StringBuilder();
-            var fields = new List<string> { "Group name", "Rank", "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "Profile".PadRight(8), "Name" };
+            var fields = new List<string> { "Group name", "Rank", "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "HasFaceit".PadRight(8), "Name" };
             var delimiter = "\t";
             result.AppendLine(string.Join(delimiter, fields));
             teams = teams.OrderBy(o => o.season_ending_rank).ToList();
@@ -131,9 +131,8 @@ namespace kanaliiga_script
             {
                 foreach (var team in teams.Where(o => o.Group == groupname))
                 {
-
                     var values = new List<string> { groupname, team.season_ending_rank.ToString().PadRight(4), team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6),
-                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.Profile.PadRight(8), team.name };
+                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitElo.PadRight(8),  $"{team.name} (${team.company_name})" };
                     result.AppendLine(string.Join(delimiter, values));
                 }
                 result.AppendLine(" ");
@@ -171,6 +170,7 @@ namespace kanaliiga_script
                         dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString);
                         player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
                         player.faceit_name = faceitplayerResponseData.games.csgo.game_player_name;
+                        player.steam_name = faceitplayerResponseData.steam_nickname;
                     }
                     else
                     {
@@ -221,9 +221,19 @@ namespace kanaliiga_script
     public class Team
     {
         public string name { get; set; }
+        public string company_name { get; set; } = "";
         public List<Player> Players { get; set; }
         public string Group { get; set; } = "";
         public int season_ending_rank { get; set; } = 0;
+
+
+        public string PlayersWithFaceitElo 
+        {
+            get
+                {
+                    return $"{Players.Count(o => o.HasFaceit)}/{Players.Count()}";
+                }
+        }
 
         public int AvgElo
         {
@@ -339,6 +349,13 @@ namespace kanaliiga_script
         public string faceit_name { get; set; }
         public int playtime_forever { get; set; }
         public bool is_public { get; set; } = true;
+        public bool HasFaceit  
+        {
+            get
+                {
+                    return faceit_name != "No faceit profile";
+                }
+        }
     }
 
 
