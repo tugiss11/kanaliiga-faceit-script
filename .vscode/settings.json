@@ -1,0 +1,8 @@
+{
+    "azureFunctions.deploySubpath": ".",
+    "azureFunctions.projectLanguage": "C#Script",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.templateFilter": "All",
+    "azureFunctions.projectSubpath": "Function2"
+}

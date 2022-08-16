@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -23,9 +25,6 @@ namespace kanaliiga_script
     public static class kanaliiga_script
     {
         private static readonly HttpClient client = new HttpClient();
-
-
-
         private static string FACEIT_API_KEY = Environment.GetEnvironmentVariable("FACEIT_API_KEY");
         private static string AZURE_STORAGE_CONNECTION_STRING = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
         private static string STEAM_API_KEY = Environment.GetEnvironmentVariable("STEAM_API_KEY");
@@ -38,7 +37,7 @@ namespace kanaliiga_script
 
         [FunctionName("kanaliiga_script")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             try
@@ -56,18 +55,27 @@ namespace kanaliiga_script
                     string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                     teams = JsonConvert.DeserializeObject<List<Team>>(requestBody);
                     log.LogInformation($"Fetching new data for {teams.Count} teams");
-                    foreach (var team in teams)
+                    var semaphoreSlim = new SemaphoreSlim(3);
+                    var tasks = teams.Select(async team =>
                     {
-                        await FillTeamDetailsFromAPIsAsync(team, log);
-                    }
+                        await semaphoreSlim.WaitAsync();
+                        try
+                        {
+                            await FillTeamDetailsFromAPIsAsync(team, log);
+                        }
+                        finally
+                        {
+                            semaphoreSlim.Release();
+                        }
+                    });
+                    await Task.WhenAll(tasks);
+
                     shouldUpdateBlob = true;
                 }
                 else
                 {
-                    BlobDownloadInfo download = await blobClient.DownloadAsync();
-                    byte[] blobdata = new byte[download.ContentLength];
-                    await download.Content.ReadAsync(blobdata, 0, (int)download.ContentLength);
-                    teams = JsonConvert.DeserializeObject<List<Team>>(Encoding.UTF8.GetString(blobdata));
+                    using var stream = await blobClient.OpenReadAsync(null);
+                    teams = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Team>>(stream);
                     log.LogInformation($"Using stored data for {teams.Count} teams");
                 }
 
@@ -101,19 +109,18 @@ namespace kanaliiga_script
         }
 
 
-
         private static StringBuilder PrintTeamsByElo(List<Team> teams)
         {
             var result = new StringBuilder();
-            var fields = new List<string> { "AvgElo", "Median", "AvgTotalHours", "AvgLast2Weeks", "?", "HasFaceit".PadRight(8), "Name" };
+            var fields = new List<string> { "AvgElo", "Median", "TotalGames", "Median", "Winrate", "AvgTotalHours", "AvgLast2Weeks", "?", "HasFaceit".PadRight(8), "Name" };
             var delimiter = "\t";
             result.AppendLine(string.Join(delimiter, fields));
             teams = teams.OrderByDescending(o => o.AvgElo).ThenByDescending(n => n.AvgTotalHours).ToList();
             foreach (var team in teams)
             {
-                 var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6),
+                var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6), team.TotalGames.ToString().PadRight(10), team.MedianGames.ToString().PadRight(6), team.WinRate.ToString().PadRight(6),
                     team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitElo.PadRight(8), $"{team.name} ({team.company_name})" };
-                    result.AppendLine(string.Join(delimiter, values));
+                result.AppendLine(string.Join(delimiter, values));
             }
             return result;
         }
@@ -169,8 +176,18 @@ namespace kanaliiga_script
                         var faceitplayerResponseString = await faceitplayerResponse.Content.ReadAsStringAsync();
                         dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString);
                         player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
-                        player.faceit_name = faceitplayerResponseData.games.csgo.game_player_name;
+                        player.faceit_name = faceitplayerResponseData.nickname;
                         player.steam_name = faceitplayerResponseData.steam_nickname;
+                        var faceitstatsResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players/{faceitplayerResponseData.player_id}/stats/csgo");
+                        if (faceitstatsResponse.IsSuccessStatusCode)
+                        {
+                            var faceitstatsResponseString = await faceitstatsResponse.Content.ReadAsStringAsync();
+                            //log.LogInformation(faceitstatsResponseString);
+                            dynamic faceitstatsResponseData = JsonConvert.DeserializeObject<dynamic>(faceitstatsResponseString);
+                            player.faceit_matches = faceitstatsResponseData.lifetime.Matches;
+                            player.faceit_kd = faceitstatsResponseData.lifetime["Average K/D Ratio"];
+                            player.faceit_winrate = faceitstatsResponseData.lifetime["Win Rate %"];
+                        }
                     }
                     else
                     {
@@ -184,15 +201,45 @@ namespace kanaliiga_script
                     var faceitplayerResponseString = await faceitplayerResponse.Content.ReadAsStringAsync();
                     dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString);
                     player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
+                    player.steam_name = faceitplayerResponseData.steam_nickname;
+                    var faceitstatsResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players/{faceitplayerResponseData.player_id}/stats/csgo");
+                    if (faceitstatsResponse.IsSuccessStatusCode)
+                    {
+                        var faceitstatsResponseString = await faceitstatsResponse.Content.ReadAsStringAsync();
+                        dynamic faceitstatsResponseData = JsonConvert.DeserializeObject<dynamic>(faceitstatsResponseString);
+                        player.faceit_matches = faceitstatsResponseData.lifetime.matches;
+                        player.faceit_kd = faceitstatsResponseData.lifetime["K/D Ratio"];
+                        player.faceit_winrate = faceitstatsResponseData.lifetime["Win Rate %"];
+                    }
                 }
-                log.LogInformation($"{player.faceit_name} {player.faceit_elo} - {player.id} {player.playtime_2weeks}");
+                log.LogInformation($"{player.faceit_name} ({player.faceit_elo}) - {player.id} - {player.playtime_2weeks}mins {player.faceit_matches} matches");
             }
 
             log.LogInformation($"AVG: {team.AvgElo} MEDIAN: {team.MedianElo}");
             log.LogInformation("--------------");
         }
-    }
 
+        [FunctionName("fun_facts")]
+        public static async Task<ActionResult> FunFactAsync(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        ILogger log)
+        {
+            BlobContainerClient container = new BlobContainerClient(AZURE_STORAGE_CONNECTION_STRING, CONTAINER_NAME);
+            BlobClient blobClient = container.GetBlobClient(BLOB_NAME);
+            using var stream = await blobClient.OpenReadAsync(null);
+            var teams = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Team>>(stream);
+            log.LogInformation($"Using stored data for {teams.Count} teams");
+            var allPlayers = teams.SelectMany(o => o.Players).ToList();
+            var result = new StringBuilder();
+            result.AppendLine($"Fetched data for {allPlayers.Count} players in {teams.Count} teams and {allPlayers.Count(o => o.HasFaceit)} players have Faceit profiles.");
+            result.AppendLine($"{allPlayers.Count(o => o.HasFaceitMatches)} players have played matches in Faceit and {allPlayers.Count(o => o.faceit_matches > 10)} have over 10 Faceit games.");
+            result.AppendLine($"There are {allPlayers.Count(o => o.faceit_elo >= 3000)} players with over 3k ELO while average ELO is {Math.Round(Convert.ToDecimal(allPlayers.Where(o => o.HasFaceitMatches).Average(o => o.faceit_elo)), 2)}.");
+            result.AppendLine($"Highest amount of Faceit games for a player is {allPlayers.Max(o => o.faceit_matches)} while average games played for players with games played is {Math.Round(Convert.ToDecimal(allPlayers.Where(o => o.HasFaceitMatches).Average(o => o.faceit_matches)), 2)}.");
+            result.AppendLine($"Highest play time is {Math.Round((decimal)allPlayers.Max(o => o.playtime_forever / 60), 2)} hours, lowest play time is {Math.Round((decimal)allPlayers.Min(o => o.playtime_forever / 60), 2)} and average play time is {Math.Round(allPlayers.Where(o => o.is_public).Average(o => o.playtime_forever / 60), 2)} hours.");
+            result.AppendLine($"{allPlayers.Count(o => !o.is_public)} players have the played hours hidden in the profile.");
+            return (ActionResult)new OkObjectResult(result.ToString());
+        }
+    }
 
     public class Game
     {
@@ -227,21 +274,25 @@ namespace kanaliiga_script
         public int season_ending_rank { get; set; } = 0;
 
 
-        public string PlayersWithFaceitElo 
+        public string PlayersWithFaceitElo
         {
             get
-                {
-                    return $"{Players.Count(o => o.HasFaceit)}/{Players.Count()}";
-                }
+            {
+                return $"{Players.Count(o => o.HasFaceit)}/{Players.Count()}";
+            }
         }
 
         public int AvgElo
         {
             get
             {
+                if (Players.Count(o => o.HasFaceitMatches) == 0)
+                {
+                    return 0;
+                }
                 var count = 0;
                 var eloSum = 0;
-                foreach (var player in Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5))
+                foreach (var player in Players.Where(o => o.HasFaceitMatches).OrderByDescending(o => o.faceit_elo).Take(5))
                 {
                     eloSum = eloSum + player.faceit_elo.Value;
                     count++;
@@ -249,6 +300,25 @@ namespace kanaliiga_script
                 if (count > 0)
                 {
                     return eloSum / count;
+                }
+                return 0;
+            }
+        }
+
+        public int AvgMatches
+        {
+            get
+            {
+                var count = 0;
+                var matchSum = 0;
+                foreach (var player in Players.OrderByDescending(o => o.faceit_elo).Take(5))
+                {
+                    matchSum = matchSum + player.faceit_matches;
+                    count++;
+                }
+                if (count > 0)
+                {
+                    return matchSum / count;
                 }
                 return 0;
             }
@@ -307,7 +377,11 @@ namespace kanaliiga_script
         {
             get
             {
-                var players = Players.Where(o => o.faceit_elo.HasValue && o.faceit_elo > 0).OrderByDescending(o => o.faceit_elo).Take(5).ToArray();
+                if (Players.Count(o => o.HasFaceitMatches) == 0)
+                {
+                    return 0;
+                }
+                var players = Players.Where(o => o.HasFaceitMatches).OrderByDescending(o => o.faceit_elo).Take(5).ToArray();
                 var n = players.Length;
                 if (n % 2 == 0)
                 {
@@ -339,6 +413,41 @@ namespace kanaliiga_script
             }
 
         }
+
+        public List<Player> TopPlayers
+        {
+            get
+            {
+                return Players.Where(o => o.HasFaceitMatches).OrderByDescending(o => o.faceit_elo).Take(5).ToList();
+            }
+        }
+
+        public int TotalGames => TopPlayers.Any() ? TopPlayers.Sum(o => o.faceit_matches) : 0;
+
+        public float? MedianGames
+        {
+            get
+            {
+                if (Players.Count(o => o.HasFaceitMatches) == 0)
+                {
+                    return 0;
+                }
+                var players = TopPlayers.ToArray();
+                var n = players.Length;
+                if (n % 2 == 0)
+                {
+                    return (TopPlayers[(n / 2) - 1].faceit_matches + TopPlayers[(n / 2)].faceit_matches) / 2.0F;
+                }
+                else
+                {
+                    return players[(n / 2)].faceit_matches;
+                }
+
+            }
+        }
+
+        public decimal AvgKd => TopPlayers.Any() ? Math.Round((decimal)TopPlayers.Average(o => o.faceit_kd), 0) : 0;
+        public decimal WinRate => TopPlayers.Any() ? Math.Round((decimal)TopPlayers.Average(o => o.faceit_winrate), 1) : 0;
     }
     public class Player
     {
@@ -349,13 +458,25 @@ namespace kanaliiga_script
         public string faceit_name { get; set; }
         public int playtime_forever { get; set; }
         public bool is_public { get; set; } = true;
-        public bool HasFaceit  
+        public bool HasFaceit
         {
             get
-                {
-                    return faceit_name != "No faceit profile";
-                }
+            {
+                return faceit_name != "No faceit profile";
+            }
         }
+
+        public bool HasFaceitMatches
+        {
+            get
+            {
+                return faceit_matches > 0;
+            }
+        }
+
+        public int faceit_matches { get; set; } = 0;
+        public double faceit_winrate { get; set; }
+        public double faceit_kd { get; set; }
     }
 
 

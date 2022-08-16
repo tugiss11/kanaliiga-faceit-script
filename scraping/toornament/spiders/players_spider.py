@@ -16,7 +16,8 @@ class PlayersSpider(scrapy.Spider):
         'https://play.toornament.com/en_US/tournaments/5678863007994986496/participants/?page=2',
         'https://play.toornament.com/en_US/tournaments/5678863007994986496/participants/?page=3',
         'https://play.toornament.com/en_US/tournaments/5678863007994986496/participants/?page=4',
-        'https://play.toornament.com/en_US/tournaments/5678863007994986496/participants/?page=5'
+        'https://play.toornament.com/en_US/tournaments/5678863007994986496/participants/?page=5',
+        'https://play.toornament.com/en_US/tournaments/5678863007994986496/participants/?page=6'
         
     ]
 
