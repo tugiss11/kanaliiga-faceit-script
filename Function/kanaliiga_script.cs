@@ -76,6 +76,26 @@ namespace kanaliiga_script
                 {
                     using var stream = await blobClient.OpenReadAsync(null);
                     teams = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Team>>(stream);
+                    string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                    var teamsInBody = JsonConvert.DeserializeObject<List<Team>>(requestBody);
+                    var existingTeamNames = teams.Select(t => t.name).ToList();
+                    teams.AddRange(teamsInBody.Where(o => !existingTeamNames.Contains(o.name)));
+                    log.LogInformation($"Fetching new data for {teams.Count(o => !o.HasData)} teams");
+                    var semaphoreSlim = new SemaphoreSlim(2);
+                    var tasks = teams.Where(o => !o.HasData).Select(async team =>
+                    {
+                        await semaphoreSlim.WaitAsync();
+                        try
+                        {
+                            await FillTeamDetailsFromAPIsAsync(team, log);
+                        }
+                        finally
+                        {
+                            semaphoreSlim.Release();
+                        }
+                    });
+                    await Task.WhenAll(tasks);
+
                     log.LogInformation($"Using stored data for {teams.Count} teams");
                 }
 
@@ -199,17 +219,20 @@ namespace kanaliiga_script
                 { //For some reason using SteamID gives wrong results for some players
                     var faceitplayerResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players?game=csgo&nickname={player.faceit_name}");
                     var faceitplayerResponseString = await faceitplayerResponse.Content.ReadAsStringAsync();
-                    dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString);
-                    player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
-                    player.steam_name = faceitplayerResponseData.steam_nickname;
-                    var faceitstatsResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players/{faceitplayerResponseData.player_id}/stats/csgo");
-                    if (faceitstatsResponse.IsSuccessStatusCode)
+                    if (faceitplayerResponse.IsSuccessStatusCode)
                     {
-                        var faceitstatsResponseString = await faceitstatsResponse.Content.ReadAsStringAsync();
-                        dynamic faceitstatsResponseData = JsonConvert.DeserializeObject<dynamic>(faceitstatsResponseString);
-                        player.faceit_matches = faceitstatsResponseData.lifetime.matches;
-                        player.faceit_kd = faceitstatsResponseData.lifetime["K/D Ratio"];
-                        player.faceit_winrate = faceitstatsResponseData.lifetime["Win Rate %"];
+                        dynamic faceitplayerResponseData = JsonConvert.DeserializeObject<dynamic>(faceitplayerResponseString);
+                        player.faceit_elo = faceitplayerResponseData.games.csgo.faceit_elo;
+                        player.steam_name = faceitplayerResponseData.steam_nickname;
+                        var faceitstatsResponse = await faceit_client.GetAsync($"https://open.faceit.com/data/v4/players/{faceitplayerResponseData.player_id}/stats/csgo");
+                        if (faceitstatsResponse.IsSuccessStatusCode)
+                        {
+                            var faceitstatsResponseString = await faceitstatsResponse.Content.ReadAsStringAsync();
+                            dynamic faceitstatsResponseData = JsonConvert.DeserializeObject<dynamic>(faceitstatsResponseString);
+                            player.faceit_matches = faceitstatsResponseData.lifetime.matches;
+                            player.faceit_kd = faceitstatsResponseData.lifetime["K/D Ratio"];
+                            player.faceit_winrate = faceitstatsResponseData.lifetime["Win Rate %"];
+                        }
                     }
                 }
                 log.LogInformation($"{player.faceit_name} ({player.faceit_elo}) - {player.id} - {player.playtime_2weeks}mins {player.faceit_matches} matches");
@@ -234,8 +257,8 @@ namespace kanaliiga_script
             result.AppendLine($"Fetched data for {allPlayers.Count} players in {teams.Count} teams and {allPlayers.Count(o => o.HasFaceit)} players have Faceit profiles.");
             result.AppendLine($"{allPlayers.Count(o => o.HasFaceitMatches)} players have played matches in Faceit and {allPlayers.Count(o => o.faceit_matches > 10)} have over 10 Faceit games.");
             result.AppendLine($"There are {allPlayers.Count(o => o.faceit_elo >= 3000)} players with over 3k ELO while average ELO is {Math.Round(Convert.ToDecimal(allPlayers.Where(o => o.HasFaceitMatches).Average(o => o.faceit_elo)), 2)}.");
-            result.AppendLine($"Highest amount of Faceit games for a player is {allPlayers.Max(o => o.faceit_matches)} while average games played for players with games played is {Math.Round(Convert.ToDecimal(allPlayers.Where(o => o.HasFaceitMatches).Average(o => o.faceit_matches)), 2)}.");
-            result.AppendLine($"Highest play time is {Math.Round((decimal)allPlayers.Max(o => o.playtime_forever / 60), 2)} hours, lowest play time is {Math.Round((decimal)allPlayers.Min(o => o.playtime_forever / 60), 2)} and average play time is {Math.Round(allPlayers.Where(o => o.is_public).Average(o => o.playtime_forever / 60), 2)} hours.");
+            result.AppendLine($"Highest amount of Faceit games for a player is {allPlayers.Max(o => o.faceit_matches)} while average for players with any games played is {Math.Round(Convert.ToDecimal(allPlayers.Where(o => o.HasFaceitMatches).Average(o => o.faceit_matches)), 2)}.");
+            result.AppendLine($"Highest play time is {Math.Round((decimal)allPlayers.Max(o => o.playtime_forever / 60), 2)} hours, lowest play time is {Math.Round((decimal)allPlayers.Where(o => o.is_public).Min(o => o.playtime_forever / 60), 2)} and average play time is {Math.Round(allPlayers.Where(o => o.is_public).Average(o => o.playtime_forever / 60), 2)} hours.");
             result.AppendLine($"{allPlayers.Count(o => !o.is_public)} players have the played hours hidden in the profile.");
             return (ActionResult)new OkObjectResult(result.ToString());
         }
@@ -273,6 +296,7 @@ namespace kanaliiga_script
         public string Group { get; set; } = "";
         public int season_ending_rank { get; set; } = 0;
 
+        public bool HasData => Players.Any(o => o.faceit_matches > 0);
 
         public string PlayersWithFaceitElo
         {
