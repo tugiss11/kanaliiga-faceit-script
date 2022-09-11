@@ -22,6 +22,6 @@ Send POST request
 bash test.sh
 ```
 
-# Teams by elo
+# Static web site
 
-http://localhost:7071/api/kanaliiga_script?format=
+https://kanaliigascript.z16.web.core.windows.net/index.html

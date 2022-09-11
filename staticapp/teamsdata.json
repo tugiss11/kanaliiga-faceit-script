@@ -1,0 +1,1802 @@
+[
+    {
+        "name": "CGI Alumni360",
+        "company_name": "CGI Suomi Oy",
+        "avgElo": 1679,
+        "medianElo": 1567.0,
+        "totalGames": 2788,
+        "avgLast2Week": 9,
+        "avgTotalHours": 3259,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "CGI Xpress",
+        "company_name": "CGI Finland",
+        "avgElo": 1366,
+        "medianElo": 1236.0,
+        "totalGames": 1146,
+        "avgLast2Week": 9,
+        "avgTotalHours": 2281,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "CGI InBA",
+        "company_name": "CGI Suomi Oy",
+        "avgElo": 1620,
+        "medianElo": 1526.0,
+        "totalGames": 4236,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2499,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "CGI-TS",
+        "company_name": "CGI Suomi Oy",
+        "avgElo": 967,
+        "medianElo": 928.5,
+        "totalGames": 106,
+        "avgLast2Week": 2,
+        "avgTotalHours": 936,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "Certego",
+        "company_name": "Certego",
+        "avgElo": 2077,
+        "medianElo": 1897.0,
+        "totalGames": 6795,
+        "avgLast2Week": 19,
+        "avgTotalHours": 3077,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Caverion End Boss",
+        "company_name": "Caverion",
+        "avgElo": 1541,
+        "medianElo": 1478.0,
+        "totalGames": 1716,
+        "avgLast2Week": 24,
+        "avgTotalHours": 3339,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "CC-Esports Crate",
+        "company_name": "Cimcorp Oy",
+        "avgElo": 1063,
+        "medianElo": 1000.0,
+        "totalGames": 488,
+        "avgLast2Week": 8,
+        "avgTotalHours": 801,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "CC-Esports Tire",
+        "company_name": "Cimcorp OY",
+        "avgElo": 1447,
+        "medianElo": 1471.0,
+        "totalGames": 1112,
+        "avgLast2Week": 4,
+        "avgTotalHours": 1487,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Caverion/2",
+        "company_name": "Caverion",
+        "avgElo": 991,
+        "medianElo": 982.0,
+        "totalGames": 571,
+        "avgLast2Week": 1,
+        "avgTotalHours": 2080,
+        "playersWithFaceitMatches": "9/9"
+    },
+    {
+        "name": "CABB Esports 2 ",
+        "company_name": "CABB Oy",
+        "avgElo": 989,
+        "medianElo": 914.0,
+        "totalGames": 268,
+        "avgLast2Week": 9,
+        "avgTotalHours": 1559,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Buutti Call",
+        "company_name": "Buutti",
+        "avgElo": 1072,
+        "medianElo": 1120.0,
+        "totalGames": 383,
+        "avgLast2Week": 2,
+        "avgTotalHours": 1388,
+        "playersWithFaceitMatches": "6/8"
+    },
+    {
+        "name": "Burger Kings",
+        "company_name": "Restel Fast food Oy",
+        "avgElo": 1370,
+        "medianElo": 1150.0,
+        "totalGames": 1006,
+        "avgLast2Week": 11,
+        "avgTotalHours": 1766,
+        "playersWithFaceitMatches": "3/6"
+    },
+    {
+        "name": "CABB Esports",
+        "company_name": "CABB Oy",
+        "avgElo": 1172,
+        "medianElo": 1141.0,
+        "totalGames": 1042,
+        "avgLast2Week": 27,
+        "avgTotalHours": 2802,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Bonfire Campers",
+        "company_name": "Rovio Entertainment Oyj",
+        "avgElo": 1527,
+        "medianElo": 1329.5,
+        "totalGames": 995,
+        "avgLast2Week": 7,
+        "avgTotalHours": 1441,
+        "playersWithFaceitMatches": "4/5"
+    },
+    {
+        "name": "btr",
+        "company_name": "bob the robot oy",
+        "avgElo": 1204,
+        "medianElo": 1040.0,
+        "totalGames": 1048,
+        "avgLast2Week": 1,
+        "avgTotalHours": 1083,
+        "playersWithFaceitMatches": "4/5"
+    },
+    {
+        "name": "Reaktor Brown Nova",
+        "company_name": "Reaktor Innovations Oy",
+        "avgElo": 950,
+        "medianElo": 950.0,
+        "totalGames": 1,
+        "avgLast2Week": 7,
+        "avgTotalHours": 770,
+        "playersWithFaceitMatches": "1/6"
+    },
+    {
+        "name": "Valtori",
+        "company_name": "Valtori",
+        "avgElo": 2277,
+        "medianElo": 2178.0,
+        "totalGames": 7999,
+        "avgLast2Week": 17,
+        "avgTotalHours": 5850,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Vaisala Esports",
+        "company_name": "Vaisala Oyj",
+        "avgElo": 1034,
+        "medianElo": 963.0,
+        "totalGames": 110,
+        "avgLast2Week": 4,
+        "avgTotalHours": 686,
+        "playersWithFaceitMatches": "5/7"
+    },
+    {
+        "name": "Trimedian Nuijapäät",
+        "company_name": "Trimedia Oy",
+        "avgElo": 1593,
+        "medianElo": 1472.5,
+        "totalGames": 2827,
+        "avgLast2Week": 8,
+        "avgTotalHours": 2252,
+        "playersWithFaceitMatches": "4/5"
+    },
+    {
+        "name": "Triplan eSports",
+        "company_name": "Triplan Oy",
+        "avgElo": 1040,
+        "medianElo": 1067.0,
+        "totalGames": 285,
+        "avgLast2Week": 5,
+        "avgTotalHours": 1999,
+        "playersWithFaceitMatches": "3/9"
+    },
+    {
+        "name": "Triuvare HSO",
+        "company_name": "Triuvare Oy",
+        "avgElo": 1431,
+        "medianElo": 1493.0,
+        "totalGames": 2512,
+        "avgLast2Week": 3,
+        "avgTotalHours": 2835,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Toro Rosso",
+        "company_name": "Red Bull Finland Oy / Videolle Oy",
+        "avgElo": 1174,
+        "medianElo": 1127.0,
+        "totalGames": 3813,
+        "avgLast2Week": 29,
+        "avgTotalHours": 2081,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "TVO eSports",
+        "company_name": "Teollisuuden Voima Oyj",
+        "avgElo": 1206,
+        "medianElo": 1215.0,
+        "totalGames": 4585,
+        "avgLast2Week": 20,
+        "avgTotalHours": 2882,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "The Switch",
+        "company_name": "The Switch",
+        "avgElo": 2102,
+        "medianElo": 2411.0,
+        "totalGames": 8821,
+        "avgLast2Week": 27,
+        "avgTotalHours": 5700,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Texa",
+        "company_name": "Turvaexpertit Helsinki Oy",
+        "avgElo": 1230,
+        "medianElo": 1278.0,
+        "totalGames": 1404,
+        "avgLast2Week": 20,
+        "avgTotalHours": 1868,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Telia Inmics-Nebula",
+        "company_name": "Telia Inmics-Nebula",
+        "avgElo": 1942,
+        "medianElo": 1945.0,
+        "totalGames": 5753,
+        "avgLast2Week": 6,
+        "avgTotalHours": 4308,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "Telia Finland",
+        "company_name": "Telia Finland Oyj",
+        "avgElo": 1447,
+        "medianElo": 1524.0,
+        "totalGames": 3694,
+        "avgLast2Week": 7,
+        "avgTotalHours": 2256,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Team Jamk",
+        "company_name": "Jyväskylän ammattikorkeakoulu",
+        "avgElo": 1140,
+        "medianElo": 1167.0,
+        "totalGames": 1351,
+        "avgLast2Week": 10,
+        "avgTotalHours": 2465,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "Supermetrics Blebs",
+        "company_name": "Supermetrics Oy",
+        "avgElo": 1066,
+        "medianElo": 1066.0,
+        "totalGames": 893,
+        "avgLast2Week": 11,
+        "avgTotalHours": 980,
+        "playersWithFaceitMatches": "2/6"
+    },
+    {
+        "name": "Supermetrics CS Tools",
+        "company_name": "Supermetrics Oy",
+        "avgElo": 1306,
+        "medianElo": 1341.0,
+        "totalGames": 645,
+        "avgLast2Week": 11,
+        "avgTotalHours": 1808,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Talentree eSports",
+        "company_name": "Talentree Oy",
+        "avgElo": 1040,
+        "medianElo": 1094.0,
+        "totalGames": 37,
+        "avgLast2Week": 3,
+        "avgTotalHours": 1459,
+        "playersWithFaceitMatches": "6/9"
+    },
+    {
+        "name": "Supermetrics 404",
+        "company_name": "Supermetrics Oy",
+        "avgElo": 1026,
+        "medianElo": 1026.0,
+        "totalGames": 3,
+        "avgLast2Week": 12,
+        "avgTotalHours": 412,
+        "playersWithFaceitMatches": "2/7"
+    },
+    {
+        "name": "Solteq",
+        "company_name": "Solteq Oyj",
+        "avgElo": 1620,
+        "medianElo": 1510.0,
+        "totalGames": 2514,
+        "avgLast2Week": 20,
+        "avgTotalHours": 3000,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Solita No Rush",
+        "company_name": "Solita Oy",
+        "avgElo": 1230,
+        "medianElo": 1117.5,
+        "totalGames": 303,
+        "avgLast2Week": 4,
+        "avgTotalHours": 1372,
+        "playersWithFaceitMatches": "4/7"
+    },
+    {
+        "name": "Solteq 2",
+        "company_name": "Solteq Oyj",
+        "avgElo": 1113,
+        "medianElo": 1086.0,
+        "totalGames": 262,
+        "avgLast2Week": 8,
+        "avgTotalHours": 800,
+        "playersWithFaceitMatches": "4/5"
+    },
+    {
+        "name": "Sofigate",
+        "company_name": "Sofigate Oy",
+        "avgElo": 1512,
+        "medianElo": 1362.0,
+        "totalGames": 3841,
+        "avgLast2Week": 4,
+        "avgTotalHours": 2165,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Skillwell",
+        "company_name": "Skillwell Oy",
+        "avgElo": 1267,
+        "medianElo": 1141.0,
+        "totalGames": 2216,
+        "avgLast2Week": 14,
+        "avgTotalHours": 2128,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Silo AI",
+        "company_name": "Silo AI Oy",
+        "avgElo": 1103,
+        "medianElo": 1031.0,
+        "totalGames": 1492,
+        "avgLast2Week": 13,
+        "avgTotalHours": 2236,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Sitowise",
+        "company_name": "Sitowise Oy",
+        "avgElo": 1606,
+        "medianElo": 1595.0,
+        "totalGames": 1452,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2576,
+        "playersWithFaceitMatches": "9/9"
+    },
+    {
+        "name": "Sofia Digital",
+        "company_name": "Sofia Digital Oy",
+        "avgElo": 1338,
+        "medianElo": 1338.5,
+        "totalGames": 206,
+        "avgLast2Week": 2,
+        "avgTotalHours": 1624,
+        "playersWithFaceitMatches": "2/6"
+    },
+    {
+        "name": "Securitas#2",
+        "company_name": "Securitas Oy",
+        "avgElo": 1173,
+        "medianElo": 1188.0,
+        "totalGames": 399,
+        "avgLast2Week": 10,
+        "avgTotalHours": 1402,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Siili",
+        "company_name": "Siili Solutions Oyj",
+        "avgElo": 1414,
+        "medianElo": 1408.0,
+        "totalGames": 474,
+        "avgLast2Week": 8,
+        "avgTotalHours": 1460,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Securitas #1",
+        "company_name": "Securitas Oy",
+        "avgElo": 1847,
+        "medianElo": 1854.0,
+        "totalGames": 5826,
+        "avgLast2Week": 32,
+        "avgTotalHours": 6516,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "SAKA",
+        "company_name": "Saka Finland Oy",
+        "avgElo": 1765,
+        "medianElo": 1848.0,
+        "totalGames": 8664,
+        "avgLast2Week": 19,
+        "avgTotalHours": 4004,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "RELEX Supply Pain Management",
+        "company_name": "RELEX Solutions",
+        "avgElo": 1151,
+        "medianElo": 1069.0,
+        "totalGames": 1973,
+        "avgLast2Week": 15,
+        "avgTotalHours": 1881,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "RELEX  Supply Chain: Global Offensive",
+        "company_name": "RELEX Solutions Oy",
+        "avgElo": 866,
+        "medianElo": 866.5,
+        "totalGames": 31,
+        "avgLast2Week": 4,
+        "avgTotalHours": 758,
+        "playersWithFaceitMatches": "2/8"
+    },
+    {
+        "name": "RELEX Integrated Supply Pain",
+        "company_name": "RELEX Solutions",
+        "avgElo": 1002,
+        "medianElo": 987.0,
+        "totalGames": 583,
+        "avgLast2Week": 25,
+        "avgTotalHours": 1464,
+        "playersWithFaceitMatches": "7/8"
+    },
+    {
+        "name": "Receptum Rekkedtum",
+        "company_name": "Receptum Palvelu Oy",
+        "avgElo": 1271,
+        "medianElo": 1266.0,
+        "totalGames": 858,
+        "avgLast2Week": 10,
+        "avgTotalHours": 2209,
+        "playersWithFaceitMatches": "3/7"
+    },
+    {
+        "name": "Fiare Esports",
+        "company_name": "Fiare Oy",
+        "avgElo": 1037,
+        "medianElo": 985.0,
+        "totalGames": 75,
+        "avgLast2Week": 6,
+        "avgTotalHours": 843,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "Fastems Farmi",
+        "company_name": "Fastems Oy",
+        "avgElo": 0,
+        "medianElo": 0.0,
+        "totalGames": 0,
+        "avgLast2Week": 1,
+        "avgTotalHours": 832,
+        "playersWithFaceitMatches": "0/7"
+    },
+    {
+        "name": "Fastems #1",
+        "company_name": "Fastems Oy Ab",
+        "avgElo": 2118,
+        "medianElo": 1921.0,
+        "totalGames": 4430,
+        "avgLast2Week": 5,
+        "avgTotalHours": 3503,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "F9 Distribution",
+        "company_name": "F9 Distribution Oy",
+        "avgElo": 1447,
+        "medianElo": 1250.0,
+        "totalGames": 1878,
+        "avgLast2Week": 13,
+        "avgTotalHours": 2204,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Etteplan RED",
+        "company_name": "Etteplan",
+        "avgElo": 1621,
+        "medianElo": 1583.0,
+        "totalGames": 4665,
+        "avgLast2Week": 15,
+        "avgTotalHours": 4239,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "ESM KyyberMaget",
+        "company_name": "Elisa Santa Monica Oy",
+        "avgElo": 1695,
+        "medianElo": 1703.0,
+        "totalGames": 3078,
+        "avgLast2Week": 6,
+        "avgTotalHours": 3429,
+        "playersWithFaceitMatches": "7/8"
+    },
+    {
+        "name": "ESYS",
+        "company_name": "ESYS",
+        "avgElo": 1035,
+        "medianElo": 1012.0,
+        "totalGames": 119,
+        "avgLast2Week": 8,
+        "avgTotalHours": 1284,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Etteplan BLUE",
+        "company_name": "Etteplan Oyj",
+        "avgElo": 1009,
+        "medianElo": 1003.0,
+        "totalGames": 273,
+        "avgLast2Week": 6,
+        "avgTotalHours": 1318,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Energiavaltti cs",
+        "company_name": "Energia Valtti Oy",
+        "avgElo": 1471,
+        "medianElo": 1420.0,
+        "totalGames": 2205,
+        "avgLast2Week": 11,
+        "avgTotalHours": 2859,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Eltel Tuulivoima",
+        "company_name": "Eltel Networks Oy",
+        "avgElo": 2137,
+        "medianElo": 2389.0,
+        "totalGames": 6534,
+        "avgLast2Week": 42,
+        "avgTotalHours": 5796,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Eltel Toimitusvarmuus",
+        "company_name": "Eltel Networks Oy",
+        "avgElo": 1378,
+        "medianElo": 1099.0,
+        "totalGames": 1107,
+        "avgLast2Week": 6,
+        "avgTotalHours": 1759,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Eltel High Voltage",
+        "company_name": "Eltel Networks  Oy",
+        "avgElo": 1331,
+        "medianElo": 1313.0,
+        "totalGames": 1379,
+        "avgLast2Week": 14,
+        "avgTotalHours": 2068,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Elomatic II",
+        "company_name": "Elomatic Oy",
+        "avgElo": 1010,
+        "medianElo": 963.0,
+        "totalGames": 564,
+        "avgLast2Week": 2,
+        "avgTotalHours": 920,
+        "playersWithFaceitMatches": "6/8"
+    },
+    {
+        "name": "Elmo Gaming",
+        "company_name": "ICT Elmo Oy",
+        "avgElo": 1276,
+        "medianElo": 1196.0,
+        "totalGames": 1915,
+        "avgLast2Week": 12,
+        "avgTotalHours": 2172,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Elomatic I",
+        "company_name": "Elomatic OY",
+        "avgElo": 1651,
+        "medianElo": 1671.0,
+        "totalGames": 2838,
+        "avgLast2Week": 14,
+        "avgTotalHours": 2850,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Elisa Phoenix",
+        "company_name": "Elisa Oyj",
+        "avgElo": 1126,
+        "medianElo": 1126.0,
+        "totalGames": 535,
+        "avgLast2Week": 9,
+        "avgTotalHours": 753,
+        "playersWithFaceitMatches": "2/5"
+    },
+    {
+        "name": "Elenia",
+        "company_name": "Elenia Verkko Oyj",
+        "avgElo": 1172,
+        "medianElo": 1204.0,
+        "totalGames": 843,
+        "avgLast2Week": 6,
+        "avgTotalHours": 1513,
+        "playersWithFaceitMatches": "4/7"
+    },
+    {
+        "name": "Elisa Käytön Huti",
+        "company_name": "Elisa OYJ",
+        "avgElo": 1416,
+        "medianElo": 1395.0,
+        "totalGames": 819,
+        "avgLast2Week": 22,
+        "avgTotalHours": 2284,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Elisa Hosujat",
+        "company_name": "Elisa Oyj",
+        "avgElo": 1533,
+        "medianElo": 1498.0,
+        "totalGames": 6517,
+        "avgLast2Week": 18,
+        "avgTotalHours": 4404,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Elekta Finland",
+        "company_name": "Kaiku Health",
+        "avgElo": 1092,
+        "medianElo": 1129.0,
+        "totalGames": 313,
+        "avgLast2Week": 18,
+        "avgTotalHours": 1761,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "Efimazing",
+        "company_name": "Efima Oyj",
+        "avgElo": 1303,
+        "medianElo": 1269.0,
+        "totalGames": 1435,
+        "avgLast2Week": 6,
+        "avgTotalHours": 3360,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Eficode Zero",
+        "company_name": "Eficode Oy",
+        "avgElo": 979,
+        "medianElo": 961.0,
+        "totalGames": 83,
+        "avgLast2Week": 2,
+        "avgTotalHours": 569,
+        "playersWithFaceitMatches": "5/7"
+    },
+    {
+        "name": "Eficode Tunkki",
+        "company_name": "Eficode Oy",
+        "avgElo": 1519,
+        "medianElo": 1160.0,
+        "totalGames": 2218,
+        "avgLast2Week": 12,
+        "avgTotalHours": 4075,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Efecte Gaming Club",
+        "company_name": "​Efecte Finland Oy",
+        "avgElo": 1667,
+        "medianElo": 1601.0,
+        "totalGames": 909,
+        "avgLast2Week": 4,
+        "avgTotalHours": 1446,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Digia Vengers",
+        "company_name": "Digia Finland oy",
+        "avgElo": 1717,
+        "medianElo": 1629.0,
+        "totalGames": 1449,
+        "avgLast2Week": 15,
+        "avgTotalHours": 2854,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Digia Naalit",
+        "company_name": "Digia Finland Oy",
+        "avgElo": 1201,
+        "medianElo": 1210.5,
+        "totalGames": 863,
+        "avgLast2Week": 11,
+        "avgTotalHours": 2784,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "CubiCasa Oy",
+        "company_name": "CubiCasa Oy",
+        "avgElo": 1474,
+        "medianElo": 1391.0,
+        "totalGames": 2813,
+        "avgLast2Week": 11,
+        "avgTotalHours": 2439,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Devisioona",
+        "company_name": "Devisioona Oy",
+        "avgElo": 1142,
+        "medianElo": 950.0,
+        "totalGames": 195,
+        "avgLast2Week": 9,
+        "avgTotalHours": 354,
+        "playersWithFaceitMatches": "3/9"
+    },
+    {
+        "name": "Colossal Order eSports",
+        "company_name": "Colossal Order",
+        "avgElo": 877,
+        "medianElo": 872.0,
+        "totalGames": 26,
+        "avgLast2Week": 4,
+        "avgTotalHours": 875,
+        "playersWithFaceitMatches": "3/6"
+    },
+    {
+        "name": "CMDamagers",
+        "company_name": "Codemate Oy",
+        "avgElo": 989,
+        "medianElo": 971.0,
+        "totalGames": 67,
+        "avgLast2Week": 15,
+        "avgTotalHours": 1034,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Crowd Collective",
+        "company_name": "Crowd Collective Finland Oy",
+        "avgElo": 1277,
+        "medianElo": 1197.0,
+        "totalGames": 1161,
+        "avgLast2Week": 7,
+        "avgTotalHours": 2076,
+        "playersWithFaceitMatches": "9/9"
+    },
+    {
+        "name": "Codemate Esports",
+        "company_name": "Codemate",
+        "avgElo": 1383,
+        "medianElo": 1175.0,
+        "totalGames": 2543,
+        "avgLast2Week": 9,
+        "avgTotalHours": 3713,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Loihde Factor",
+        "company_name": "Loihde Factor",
+        "avgElo": 1453,
+        "medianElo": 1279.0,
+        "totalGames": 933,
+        "avgLast2Week": 34,
+        "avgTotalHours": 1665,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Loihde",
+        "company_name": "Loihde Oyj",
+        "avgElo": 1253,
+        "medianElo": 1184.0,
+        "totalGames": 2688,
+        "avgLast2Week": 36,
+        "avgTotalHours": 1368,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "LähiTapiola 3.4.3",
+        "company_name": "LähiTapiola Pääkaupunkiseutu",
+        "avgElo": 1822,
+        "medianElo": 1384.0,
+        "totalGames": 8480,
+        "avgLast2Week": 6,
+        "avgTotalHours": 4725,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Kuntarahoitus",
+        "company_name": "Kuntarahoitus Oyj",
+        "avgElo": 1341,
+        "medianElo": 1289.0,
+        "totalGames": 1696,
+        "avgLast2Week": 5,
+        "avgTotalHours": 1817,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "KTO:CS",
+        "company_name": "KTO",
+        "avgElo": 988,
+        "medianElo": 988.0,
+        "totalGames": 394,
+        "avgLast2Week": 29,
+        "avgTotalHours": 177,
+        "playersWithFaceitMatches": "1/6"
+    },
+    {
+        "name": "Kotipizza Nokia",
+        "company_name": "Grebmit OY",
+        "avgElo": 1475,
+        "medianElo": 1630.0,
+        "totalGames": 1455,
+        "avgLast2Week": 45,
+        "avgTotalHours": 2676,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "KONE #2",
+        "company_name": "Kone Oyj",
+        "avgElo": 1195,
+        "medianElo": 951.0,
+        "totalGames": 1829,
+        "avgLast2Week": 18,
+        "avgTotalHours": 1545,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "KONE",
+        "company_name": "KONE Oyj",
+        "avgElo": 1409,
+        "medianElo": 1472.0,
+        "totalGames": 1228,
+        "avgLast2Week": 0,
+        "avgTotalHours": 2844,
+        "playersWithFaceitMatches": "9/9"
+    },
+    {
+        "name": "Kela Platinum",
+        "company_name": "Kansaneläkelaitos",
+        "avgElo": 861,
+        "medianElo": 812.0,
+        "totalGames": 800,
+        "avgLast2Week": 25,
+        "avgTotalHours": 2043,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "Kela Gold",
+        "company_name": "Kela",
+        "avgElo": 1756,
+        "medianElo": 1635.0,
+        "totalGames": 4421,
+        "avgLast2Week": 11,
+        "avgTotalHours": 2923,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Jobilla Esports",
+        "company_name": "Jobilla Oy",
+        "avgElo": 1030,
+        "medianElo": 998.0,
+        "totalGames": 182,
+        "avgLast2Week": 9,
+        "avgTotalHours": 1163,
+        "playersWithFaceitMatches": "4/9"
+    },
+    {
+        "name": "Kaiku Health",
+        "company_name": "Kaiku Health Oy",
+        "avgElo": 1367,
+        "medianElo": 1376.0,
+        "totalGames": 2581,
+        "avgLast2Week": 15,
+        "avgTotalHours": 2961,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "JIS-Automation",
+        "company_name": "JIS-Automation",
+        "avgElo": 2108,
+        "medianElo": 1740.0,
+        "totalGames": 3156,
+        "avgLast2Week": 24,
+        "avgTotalHours": 2710,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "JanLa ",
+        "company_name": "JanLa Oy",
+        "avgElo": 1058,
+        "medianElo": 1033.0,
+        "totalGames": 2148,
+        "avgLast2Week": 15,
+        "avgTotalHours": 2062,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "INSTA eSports",
+        "company_name": "Insta Advance Oy",
+        "avgElo": 1929,
+        "medianElo": 1975.0,
+        "totalGames": 3880,
+        "avgLast2Week": 27,
+        "avgTotalHours": 3884,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "IBM Esports",
+        "company_name": "Oy Ibm Finland Ab",
+        "avgElo": 1155,
+        "medianElo": 1138.0,
+        "totalGames": 1212,
+        "avgLast2Week": 4,
+        "avgTotalHours": 1501,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "HUB ESPORT",
+        "company_name": "HUB logistics Finland Oy",
+        "avgElo": 1245,
+        "medianElo": 990.0,
+        "totalGames": 3718,
+        "avgLast2Week": 13,
+        "avgTotalHours": 2931,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "HiQ-CS",
+        "company_name": "HiQ Finland",
+        "avgElo": 1931,
+        "medianElo": 2108.0,
+        "totalGames": 2188,
+        "avgLast2Week": 18,
+        "avgTotalHours": 3026,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "HK Instruments eSports",
+        "company_name": "HK Instruments Oy",
+        "avgElo": 1332,
+        "medianElo": 1186.0,
+        "totalGames": 401,
+        "avgLast2Week": 12,
+        "avgTotalHours": 3282,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Hoxhunt e-urheilu",
+        "company_name": "HoxHunt Oy",
+        "avgElo": 1231,
+        "medianElo": 1065.5,
+        "totalGames": 1130,
+        "avgLast2Week": 4,
+        "avgTotalHours": 1753,
+        "playersWithFaceitMatches": "4/7"
+    },
+    {
+        "name": "Hibox",
+        "company_name": "Hibox Systems Oy",
+        "avgElo": 1214,
+        "medianElo": 1214.5,
+        "totalGames": 1294,
+        "avgLast2Week": 3,
+        "avgTotalHours": 1473,
+        "playersWithFaceitMatches": "2/7"
+    },
+    {
+        "name": "Granlund Esports 2",
+        "company_name": "Granlund Oy",
+        "avgElo": 1147,
+        "medianElo": 1059.0,
+        "totalGames": 1527,
+        "avgLast2Week": 7,
+        "avgTotalHours": 1701,
+        "playersWithFaceitMatches": "6/8"
+    },
+    {
+        "name": "Granlund Esports 1",
+        "company_name": "Granlund Oy",
+        "avgElo": 2096,
+        "medianElo": 2021.0,
+        "totalGames": 7090,
+        "avgLast2Week": 4,
+        "avgTotalHours": 3216,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Gigantti 4127",
+        "company_name": "Gigantti Oy",
+        "avgElo": 1265,
+        "medianElo": 1145.0,
+        "totalGames": 10654,
+        "avgLast2Week": 29,
+        "avgTotalHours": 4895,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Futuric3",
+        "company_name": "Futurice  oy",
+        "avgElo": 755,
+        "medianElo": 755.0,
+        "totalGames": 30,
+        "avgLast2Week": 6,
+        "avgTotalHours": 567,
+        "playersWithFaceitMatches": "2/7"
+    },
+    {
+        "name": "Fu2rice",
+        "company_name": "Futurice",
+        "avgElo": 1295,
+        "medianElo": 1249.0,
+        "totalGames": 767,
+        "avgLast2Week": 3,
+        "avgTotalHours": 2136,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Futur1ce",
+        "company_name": "Futurice Oy",
+        "avgElo": 2021,
+        "medianElo": 1635.0,
+        "totalGames": 4274,
+        "avgLast2Week": 23,
+        "avgTotalHours": 2818,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Finnair MAX THRUST",
+        "company_name": "Finnair",
+        "avgElo": 1542,
+        "medianElo": 1507.0,
+        "totalGames": 3368,
+        "avgLast2Week": 8,
+        "avgTotalHours": 3250,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Fraktio",
+        "company_name": "Fraktio",
+        "avgElo": 970,
+        "medianElo": 804.0,
+        "totalGames": 120,
+        "avgLast2Week": 4,
+        "avgTotalHours": 846,
+        "playersWithFaceitMatches": "6/9"
+    },
+    {
+        "name": "Finnair Idle thrust",
+        "company_name": "Finnair",
+        "avgElo": 936,
+        "medianElo": 957.0,
+        "totalGames": 135,
+        "avgLast2Week": 6,
+        "avgTotalHours": 1451,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Fingrid",
+        "company_name": "Fingrid Oyj",
+        "avgElo": 1356,
+        "medianElo": 1413.0,
+        "totalGames": 1231,
+        "avgLast2Week": 0,
+        "avgTotalHours": 0,
+        "playersWithFaceitMatches": "3/7"
+    },
+    {
+        "name": "Fiarone",
+        "company_name": "Fiarone Oy",
+        "avgElo": 1676,
+        "medianElo": 1725.0,
+        "totalGames": 3317,
+        "avgLast2Week": 11,
+        "avgTotalHours": 3232,
+        "playersWithFaceitMatches": "6/8"
+    },
+    {
+        "name": "Zaibatsu Corporation",
+        "company_name": "Zaibatsu Interactive oy",
+        "avgElo": 1226,
+        "medianElo": 1226.0,
+        "totalGames": 559,
+        "avgLast2Week": 1,
+        "avgTotalHours": 2231,
+        "playersWithFaceitMatches": "1/5"
+    },
+    {
+        "name": "Wolt Task Force",
+        "company_name": "Wolt Enterprises Oy",
+        "avgElo": 1810,
+        "medianElo": 1759.0,
+        "totalGames": 7456,
+        "avgLast2Week": 9,
+        "avgTotalHours": 2977,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "VR Group 2 ",
+        "company_name": "VR-Yhtymä Oyj",
+        "avgElo": 1096,
+        "medianElo": 1096.0,
+        "totalGames": 31,
+        "avgLast2Week": 7,
+        "avgTotalHours": 1638,
+        "playersWithFaceitMatches": "2/5"
+    },
+    {
+        "name": "Visma in Pyjamas",
+        "company_name": "Visma Solutions Oy",
+        "avgElo": 1293,
+        "medianElo": 1282.0,
+        "totalGames": 1531,
+        "avgLast2Week": 9,
+        "avgTotalHours": 2743,
+        "playersWithFaceitMatches": "7/8"
+    },
+    {
+        "name": "VR Group 1",
+        "company_name": "VR-Yhtymä Oyj",
+        "avgElo": 1371,
+        "medianElo": 1259.0,
+        "totalGames": 1361,
+        "avgLast2Week": 15,
+        "avgTotalHours": 2677,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Visma",
+        "company_name": "Visma Group",
+        "avgElo": 1414,
+        "medianElo": 1205.0,
+        "totalGames": 314,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2008,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Virnex",
+        "company_name": "Virnex Business Services Oy",
+        "avgElo": 1225,
+        "medianElo": 1288.0,
+        "totalGames": 1000,
+        "avgLast2Week": 2,
+        "avgTotalHours": 3843,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "Vincit SIGMA",
+        "company_name": "Vincit",
+        "avgElo": 1632,
+        "medianElo": 1294.0,
+        "totalGames": 2325,
+        "avgLast2Week": 11,
+        "avgTotalHours": 1755,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Vincit Alfat",
+        "company_name": "Vincit Oy",
+        "avgElo": 1724,
+        "medianElo": 1676.0,
+        "totalGames": 1376,
+        "avgLast2Week": 9,
+        "avgTotalHours": 2239,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Vincit KUHAT",
+        "company_name": "Vincit Oyj",
+        "avgElo": 919,
+        "medianElo": 937.0,
+        "totalGames": 75,
+        "avgLast2Week": 0,
+        "avgTotalHours": 913,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "VILPE C-SARJA",
+        "company_name": "Vilpe Oy",
+        "avgElo": 1286,
+        "medianElo": 1307.0,
+        "totalGames": 2469,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2588,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "VILPE FLOW",
+        "company_name": "VILPE Oy",
+        "avgElo": 2248,
+        "medianElo": 2173.0,
+        "totalGames": 7125,
+        "avgLast2Week": 38,
+        "avgTotalHours": 4979,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "VILPE ECO",
+        "company_name": "VILPE Oy",
+        "avgElo": 1109,
+        "medianElo": 1102.0,
+        "totalGames": 1099,
+        "avgLast2Week": 27,
+        "avgTotalHours": 4213,
+        "playersWithFaceitMatches": "9/9"
+    },
+    {
+        "name": "VideoVisit",
+        "company_name": "VideoVisit",
+        "avgElo": 1210,
+        "medianElo": 808.0,
+        "totalGames": 422,
+        "avgLast2Week": 26,
+        "avgTotalHours": 2165,
+        "playersWithFaceitMatches": "3/8"
+    },
+    {
+        "name": "Vetonaula Oy",
+        "company_name": "Vetonaula Oy",
+        "avgElo": 1200,
+        "medianElo": 1242.0,
+        "totalGames": 1694,
+        "avgLast2Week": 20,
+        "avgTotalHours": 2516,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Verkkokauppa.com",
+        "company_name": "Verkkokauppa.com",
+        "avgElo": 1264,
+        "medianElo": 1265.0,
+        "totalGames": 794,
+        "avgLast2Week": 6,
+        "avgTotalHours": 2033,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Veikkaus Esports 2",
+        "company_name": "Veikkaus Oy",
+        "avgElo": 920,
+        "medianElo": 923.0,
+        "totalGames": 715,
+        "avgLast2Week": 13,
+        "avgTotalHours": 1260,
+        "playersWithFaceitMatches": "9/9"
+    },
+    {
+        "name": "Veikkaus Esports 1",
+        "company_name": "Veikkaus Oy",
+        "avgElo": 1567,
+        "medianElo": 1643.0,
+        "totalGames": 4557,
+        "avgLast2Week": 12,
+        "avgTotalHours": 3465,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "VCS eSports",
+        "company_name": "Vantaa Catering Services Oy",
+        "avgElo": 931,
+        "medianElo": 966.0,
+        "totalGames": 143,
+        "avgLast2Week": 4,
+        "avgTotalHours": 723,
+        "playersWithFaceitMatches": "3/6"
+    },
+    {
+        "name": "VEHO",
+        "company_name": "Veho Oy Ab",
+        "avgElo": 1350,
+        "medianElo": 1234.0,
+        "totalGames": 1809,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2465,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Reaktor",
+        "company_name": "Reaktor Innovations Oy",
+        "avgElo": 1247,
+        "medianElo": 1161.0,
+        "totalGames": 244,
+        "avgLast2Week": 5,
+        "avgTotalHours": 1421,
+        "playersWithFaceitMatches": "3/6"
+    },
+    {
+        "name": "Ramboll Winland",
+        "company_name": "Ramboll Finland Oy",
+        "avgElo": 1104,
+        "medianElo": 1133.0,
+        "totalGames": 894,
+        "avgLast2Week": 3,
+        "avgTotalHours": 1811,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Rambo II",
+        "company_name": "Ramboll Finland Oy",
+        "avgElo": 1725,
+        "medianElo": 1547.0,
+        "totalGames": 3340,
+        "avgLast2Week": 2,
+        "avgTotalHours": 3674,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "PwC eSports",
+        "company_name": "PricewaterhouseCoopers Oy",
+        "avgElo": 1429,
+        "medianElo": 1148.0,
+        "totalGames": 1715,
+        "avgLast2Week": 2,
+        "avgTotalHours": 2003,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "PV-2",
+        "company_name": "Puolustusvoimat",
+        "avgElo": 952,
+        "medianElo": 952.0,
+        "totalGames": 22,
+        "avgLast2Week": 7,
+        "avgTotalHours": 233,
+        "playersWithFaceitMatches": "2/7"
+    },
+    {
+        "name": "PV-1",
+        "company_name": "Puolustusvoimat",
+        "avgElo": 1182,
+        "medianElo": 1034.0,
+        "totalGames": 1031,
+        "avgLast2Week": 9,
+        "avgTotalHours": 1323,
+        "playersWithFaceitMatches": "5/7"
+    },
+    {
+        "name": "Printcom",
+        "company_name": "Printcom Center Oy",
+        "avgElo": 1122,
+        "medianElo": 1095.0,
+        "totalGames": 223,
+        "avgLast2Week": 3,
+        "avgTotalHours": 891,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Prove",
+        "company_name": "Prove Expertise Oy",
+        "avgElo": 909,
+        "medianElo": 1000.0,
+        "totalGames": 78,
+        "avgLast2Week": 6,
+        "avgTotalHours": 1503,
+        "playersWithFaceitMatches": "3/7"
+    },
+    {
+        "name": "Power Mikkeli",
+        "company_name": "Power Finland Oy",
+        "avgElo": 2069,
+        "medianElo": 2103.0,
+        "totalGames": 2544,
+        "avgLast2Week": 8,
+        "avgTotalHours": 4456,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Pohjolan Puoliosujat",
+        "company_name": "Nordic Semiconductor Finland Oy",
+        "avgElo": 1609,
+        "medianElo": 1614.0,
+        "totalGames": 6021,
+        "avgLast2Week": 10,
+        "avgTotalHours": 2134,
+        "playersWithFaceitMatches": "7/8"
+    },
+    {
+        "name": "Polar Squad",
+        "company_name": "Polar Squad",
+        "avgElo": 1122,
+        "medianElo": 1065.0,
+        "totalGames": 587,
+        "avgLast2Week": 14,
+        "avgTotalHours": 2031,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Pinja",
+        "company_name": "Pinja Digital Oy",
+        "avgElo": 1497,
+        "medianElo": 1423.0,
+        "totalGames": 898,
+        "avgLast2Week": 9,
+        "avgTotalHours": 2633,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Plugit Funland",
+        "company_name": "Plugit Finland Oy",
+        "avgElo": 1476,
+        "medianElo": 1483.0,
+        "totalGames": 481,
+        "avgLast2Week": 9,
+        "avgTotalHours": 1548,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "NRCGroup",
+        "company_name": "NRC Group Finland Oy",
+        "avgElo": 1442,
+        "medianElo": 1379.0,
+        "totalGames": 6001,
+        "avgLast2Week": 15,
+        "avgTotalHours": 3669,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "Nondest",
+        "company_name": "Nondest Oy",
+        "avgElo": 1548,
+        "medianElo": 1567.0,
+        "totalGames": 6390,
+        "avgLast2Week": 28,
+        "avgTotalHours": 3773,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Nokia 5GPEEK",
+        "company_name": "Nokia Solutions and Networks Oy",
+        "avgElo": 1316,
+        "medianElo": 1248.0,
+        "totalGames": 1889,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2913,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "NOKIA UL PHY",
+        "company_name": "Nokia Solutions and Networks Oy",
+        "avgElo": 1446,
+        "medianElo": 1373.0,
+        "totalGames": 1540,
+        "avgLast2Week": 12,
+        "avgTotalHours": 2250,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "NODEON",
+        "company_name": "Nodeon Finland Oy",
+        "avgElo": 1421,
+        "medianElo": 1636.0,
+        "totalGames": 2370,
+        "avgLast2Week": 9,
+        "avgTotalHours": 3404,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "Nokia 3310",
+        "company_name": "Nokia Oyj",
+        "avgElo": 1242,
+        "medianElo": 1196.0,
+        "totalGames": 3206,
+        "avgLast2Week": 20,
+        "avgTotalHours": 2819,
+        "playersWithFaceitMatches": "7/8"
+    },
+    {
+        "name": "Nexi Stack B",
+        "company_name": "Nets Oy",
+        "avgElo": 804,
+        "medianElo": 804.0,
+        "totalGames": 55,
+        "avgLast2Week": 5,
+        "avgTotalHours": 238,
+        "playersWithFaceitMatches": "1/5"
+    },
+    {
+        "name": "Netlight Managerin Spesiaali",
+        "company_name": "Netlight Consulting Oy",
+        "avgElo": 871,
+        "medianElo": 824.5,
+        "totalGames": 439,
+        "avgLast2Week": 6,
+        "avgTotalHours": 490,
+        "playersWithFaceitMatches": "4/8"
+    },
+    {
+        "name": "Nexi Stack A",
+        "company_name": "Nets Oy",
+        "avgElo": 1255,
+        "medianElo": 1253.0,
+        "totalGames": 2425,
+        "avgLast2Week": 16,
+        "avgTotalHours": 2276,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "Netlight in Pyjamas",
+        "company_name": "Netlight",
+        "avgElo": 1304,
+        "medianElo": 1303.0,
+        "totalGames": 864,
+        "avgLast2Week": 8,
+        "avgTotalHours": 2155,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Netlight Consulting",
+        "company_name": "Netlight Consulting Oy",
+        "avgElo": 1587,
+        "medianElo": 1486.0,
+        "totalGames": 2371,
+        "avgLast2Week": 7,
+        "avgTotalHours": 2063,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Nethit",
+        "company_name": "Nethit Systems Ltd Oy",
+        "avgElo": 1109,
+        "medianElo": 1053.0,
+        "totalGames": 207,
+        "avgLast2Week": 16,
+        "avgTotalHours": 1368,
+        "playersWithFaceitMatches": "3/6"
+    },
+    {
+        "name": "Neste Glada Hundar",
+        "company_name": "Neste Oyj",
+        "avgElo": 1413,
+        "medianElo": 1117.0,
+        "totalGames": 2069,
+        "avgLast2Week": 11,
+        "avgTotalHours": 1353,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Negevlight Consulting",
+        "company_name": "Netlight Consulting Oy",
+        "avgElo": 0,
+        "medianElo": 0.0,
+        "totalGames": 0,
+        "avgLast2Week": 4,
+        "avgTotalHours": 83,
+        "playersWithFaceitMatches": "0/7"
+    },
+    {
+        "name": "NBDG",
+        "company_name": "Alarauta Oy",
+        "avgElo": 1075,
+        "medianElo": 998.0,
+        "totalGames": 1181,
+        "avgLast2Week": 11,
+        "avgTotalHours": 1158,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Mehiläinen Farmarit",
+        "company_name": "Mehiläinen Oy",
+        "avgElo": 1074,
+        "medianElo": 993.0,
+        "totalGames": 2628,
+        "avgLast2Week": 1,
+        "avgTotalHours": 1376,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Mehiläinen Bee Rush",
+        "company_name": "Mehiläinen",
+        "avgElo": 2164,
+        "medianElo": 2240.0,
+        "totalGames": 11884,
+        "avgLast2Week": 32,
+        "avgTotalHours": 5736,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "mcare esports",
+        "company_name": "mcare Oy",
+        "avgElo": 1434,
+        "medianElo": 1352.0,
+        "totalGames": 3111,
+        "avgLast2Week": 12,
+        "avgTotalHours": 3267,
+        "playersWithFaceitMatches": "8/8"
+    },
+    {
+        "name": "Bluefors CST",
+        "company_name": "Bluefors Oy",
+        "avgElo": 1262,
+        "medianElo": 1246.0,
+        "totalGames": 3190,
+        "avgLast2Week": 11,
+        "avgTotalHours": 2534,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Bluefors RMA",
+        "company_name": "Bluefors Oy",
+        "avgElo": 877,
+        "medianElo": 877.0,
+        "totalGames": 43,
+        "avgLast2Week": 2,
+        "avgTotalHours": 380,
+        "playersWithFaceitMatches": "1/7"
+    },
+    {
+        "name": "BitwiseCS",
+        "company_name": "Bitwise Oy",
+        "avgElo": 807,
+        "medianElo": 948.0,
+        "totalGames": 1392,
+        "avgLast2Week": 2,
+        "avgTotalHours": 2698,
+        "playersWithFaceitMatches": "5/5"
+    },
+    {
+        "name": "Basware Boomers",
+        "company_name": "Basware Oyj",
+        "avgElo": 1139,
+        "medianElo": 1095.0,
+        "totalGames": 730,
+        "avgLast2Week": 11,
+        "avgTotalHours": 2227,
+        "playersWithFaceitMatches": "8/9"
+    },
+    {
+        "name": "Barona",
+        "company_name": "Barona ICT Poland",
+        "avgElo": 1222,
+        "medianElo": 1267.0,
+        "totalGames": 2844,
+        "avgLast2Week": 31,
+        "avgTotalHours": 3690,
+        "playersWithFaceitMatches": "7/8"
+    },
+    {
+        "name": "Avarn eSports",
+        "company_name": "Avarn Security Oy",
+        "avgElo": 1204,
+        "medianElo": 1262.0,
+        "totalGames": 3160,
+        "avgLast2Week": 7,
+        "avgTotalHours": 2609,
+        "playersWithFaceitMatches": "5/6"
+    },
+    {
+        "name": "Ava Phishing",
+        "company_name": "Avanade Finland Oy",
+        "avgElo": 1269,
+        "medianElo": 1244.0,
+        "totalGames": 3437,
+        "avgLast2Week": 9,
+        "avgTotalHours": 2566,
+        "playersWithFaceitMatches": "4/7"
+    },
+    {
+        "name": "Aspocomp",
+        "company_name": "Aspocomp Group Oyj",
+        "avgElo": 1894,
+        "medianElo": 2021.0,
+        "totalGames": 6575,
+        "avgLast2Week": 7,
+        "avgTotalHours": 4702,
+        "playersWithFaceitMatches": "7/9"
+    },
+    {
+        "name": "Are Cloud",
+        "company_name": "Are Oy",
+        "avgElo": 1144,
+        "medianElo": 1073.0,
+        "totalGames": 495,
+        "avgLast2Week": 5,
+        "avgTotalHours": 1060,
+        "playersWithFaceitMatches": "4/6"
+    },
+    {
+        "name": "AlppilaCSGO",
+        "company_name": "Alppilan Autohuolto Oy",
+        "avgElo": 1578,
+        "medianElo": 1353.0,
+        "totalGames": 3451,
+        "avgLast2Week": 24,
+        "avgTotalHours": 2041,
+        "playersWithFaceitMatches": "7/7"
+    },
+    {
+        "name": "ALM Partners Riskiryhmä",
+        "company_name": "ALM Partners Oy",
+        "avgElo": 1098,
+        "medianElo": 978.0,
+        "totalGames": 565,
+        "avgLast2Week": 13,
+        "avgTotalHours": 1473,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "ALM Partners Luottotappio",
+        "company_name": "ALM Partners Oy",
+        "avgElo": 978,
+        "medianElo": 948.0,
+        "totalGames": 183,
+        "avgLast2Week": 3,
+        "avgTotalHours": 360,
+        "playersWithFaceitMatches": "6/8"
+    },
+    {
+        "name": "Accenture Security",
+        "company_name": "Accenture Oy",
+        "avgElo": 1715,
+        "medianElo": 1404.0,
+        "totalGames": 2230,
+        "avgLast2Week": 1,
+        "avgTotalHours": 1992,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "ALM Partners",
+        "company_name": "ALM Partners Oy",
+        "avgElo": 1480,
+        "medianElo": 1371.0,
+        "totalGames": 2848,
+        "avgLast2Week": 23,
+        "avgTotalHours": 2631,
+        "playersWithFaceitMatches": "6/6"
+    },
+    {
+        "name": "Abloy",
+        "company_name": "Abloy Oy",
+        "avgElo": 1821,
+        "medianElo": 1894.0,
+        "totalGames": 3267,
+        "avgLast2Week": 10,
+        "avgTotalHours": 3388,
+        "playersWithFaceitMatches": "6/7"
+    },
+    {
+        "name": "Aavat",
+        "company_name": "Insinööritoimisto Aavat Oy",
+        "avgElo": 1594,
+        "medianElo": 1512.5,
+        "totalGames": 5641,
+        "avgLast2Week": 4,
+        "avgTotalHours": 2884,
+        "playersWithFaceitMatches": "4/5"
+    },
+    {
+        "name": "2NS Gaming",
+        "company_name": "Second Nature Security Oy",
+        "avgElo": 1455,
+        "medianElo": 1364.0,
+        "totalGames": 2417,
+        "avgLast2Week": 22,
+        "avgTotalHours": 4866,
+        "playersWithFaceitMatches": "7/8"
+    }
+]

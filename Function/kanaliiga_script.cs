@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -8,17 +7,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Primitives;
 using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace kanaliiga_script
 {
@@ -139,7 +134,7 @@ namespace kanaliiga_script
             foreach (var team in teams)
             {
                 var values = new List<string> { team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6), team.TotalGames.ToString().PadRight(10), team.MedianGames.ToString().PadRight(6), team.WinRate.ToString().PadRight(6),
-                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitElo.PadRight(8), $"{team.name} ({team.company_name})" };
+                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitMatches.PadRight(8), $"{team.name} ({team.company_name})" };
                 result.AppendLine(string.Join(delimiter, values));
             }
             return result;
@@ -159,7 +154,7 @@ namespace kanaliiga_script
                 foreach (var team in teams.Where(o => o.Group == groupname))
                 {
                     var values = new List<string> { groupname, team.season_ending_rank.ToString().PadRight(4), team.AvgElo.ToString().PadRight(6), team.MedianElo.ToString().PadRight(6),
-                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitElo.PadRight(8),  $"{team.name} (${team.company_name})" };
+                    team.AvgTotalHours.ToString().PadRight(13), team.AvgLast2Week.ToString().PadRight(13), team.PrivateCount.ToString(), team.PlayersWithFaceitMatches.PadRight(8),  $"{team.name} (${team.company_name})" };
                     result.AppendLine(string.Join(delimiter, values));
                 }
                 result.AppendLine(" ");
@@ -262,6 +257,35 @@ namespace kanaliiga_script
             result.AppendLine($"{allPlayers.Count(o => !o.is_public)} players have the played hours hidden in the profile.");
             return (ActionResult)new OkObjectResult(result.ToString());
         }
+
+        [FunctionName("players_json")]
+        public static async Task<JsonResult> PlayersAsync(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        ILogger log)
+        {
+            BlobContainerClient container = new BlobContainerClient(AZURE_STORAGE_CONNECTION_STRING, CONTAINER_NAME);
+            BlobClient blobClient = container.GetBlobClient(BLOB_NAME);
+            using var stream = await blobClient.OpenReadAsync(null);
+            var teams = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Team>>(stream);
+            teams.ForEach(o => o.Players.ForEach(t => t.team_name = o.name));
+            var allPlayers = teams.SelectMany(o => o.Players).ToList();
+            return new JsonResult(allPlayers);
+        }
+
+
+        [FunctionName("teams_json")]
+        public static async Task<JsonResult> TeamsAsync(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+        ILogger log)
+        {
+            BlobContainerClient container = new BlobContainerClient(AZURE_STORAGE_CONNECTION_STRING, CONTAINER_NAME);
+            BlobClient blobClient = container.GetBlobClient(BLOB_NAME);
+            using var stream = await blobClient.OpenReadAsync(null);
+            var teams = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Team>>(stream);
+            var result = teams.Select(o => new { o.name, o.company_name, o.AvgElo, o.MedianElo, o.TotalGames, o.AvgLast2Week, o.AvgTotalHours, o.PlayersWithFaceitMatches }).ToList();
+
+            return new JsonResult(result);
+        }
     }
 
     public class Game
@@ -294,15 +318,19 @@ namespace kanaliiga_script
         public string company_name { get; set; } = "";
         public List<Player> Players { get; set; }
         public string Group { get; set; } = "";
+
+        [JsonIgnore]
         public int season_ending_rank { get; set; } = 0;
 
+        [JsonIgnore]
         public bool HasData => Players.Any(o => o.faceit_matches > 0);
 
-        public string PlayersWithFaceitElo
+        [JsonIgnore]
+        public string PlayersWithFaceitMatches
         {
             get
             {
-                return $"{Players.Count(o => o.HasFaceit)}/{Players.Count()}";
+                return $"{Players.Count(o => o.HasFaceitMatches)}/{Players.Count()}";
             }
         }
 
@@ -438,6 +466,7 @@ namespace kanaliiga_script
 
         }
 
+        [JsonIgnore]
         public List<Player> TopPlayers
         {
             get
@@ -470,18 +499,23 @@ namespace kanaliiga_script
             }
         }
 
+        [JsonIgnore]
         public decimal AvgKd => TopPlayers.Any() ? Math.Round((decimal)TopPlayers.Average(o => o.faceit_kd), 0) : 0;
+
+        [JsonIgnore]
         public decimal WinRate => TopPlayers.Any() ? Math.Round((decimal)TopPlayers.Average(o => o.faceit_winrate), 1) : 0;
     }
     public class Player
     {
         public string id { get; set; }
         public string steam_name { get; set; }
+        public string team_name { get; set; }
         public int? faceit_elo { get; set; }
         public int playtime_2weeks { get; set; }
         public string faceit_name { get; set; }
         public int playtime_forever { get; set; }
         public bool is_public { get; set; } = true;
+
         public bool HasFaceit
         {
             get
@@ -498,8 +532,28 @@ namespace kanaliiga_script
             }
         }
 
+        public double playtime_forever_hours
+        {
+            get
+            {
+                return playtime_forever / 60;
+            }
+        }
+
+        public double playtime_2weeks_hours
+        {
+            get
+            {
+                return playtime_2weeks / 60;
+            }
+        }
+
         public int faceit_matches { get; set; } = 0;
+
+        [JsonIgnore]
         public double faceit_winrate { get; set; }
+
+        [JsonIgnore]
         public double faceit_kd { get; set; }
     }
 
